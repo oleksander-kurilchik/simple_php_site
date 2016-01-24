@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <form action="registration.php" method="POST">
+                <label>Enter Login<input name="login" type="text" size="30" maxlength="90" value="{$login}"  >{$loginmessage}</label><br/>
+                <label>Enter first name<input name="firtsname" type="text" size="30" maxlength="90"  value="{$firtsname}" >{$firtsnamemessage}</label><br/>
+                <label>Enter second name<input name="secondname" type="text" size="30" maxlength="90"  value="{$secondname}" ></label>{$secondnamemessage}<br/>
+                <label>Enter last name<input name="lastname" type="text" size="30" maxlength="90"  value="{$lastname}" >{$lastnamemessage}</label><br/>
+                <label>Pass<input name="password_1" type="password" size="30" maxlength="90"   >{$password_1message}</label><br/>
+                <label>repead pass<input name="password_2" type="password" size="30" maxlength="90"   >{$password_2message}</label><br/>
+                <label> Enter sex<select name="sex"   >{$sexmessage}
+                        <option value="male"  {$sexmale}  >Male</option >
+                        <option value="female"   {$sexfemale} > Female</option>
+                    </select>{message} </label><br/>
+                    <label>Date of bird<input name="date_of_bird" type="text" size="30" maxlength="90"  value="{$date_of_bird}" > {$date_of_birdmessage}</label><br/>
+                    <label>Email<input name="email" type="text" size="30" maxlength="150"  value="{$email}" >{$emailmessage}</label><br/>
+                    <label>Address<input name="address" type="text" size="30" maxlength="256"  value="{$address}" >{$addressmessage}</label><br/>
+                    <input type="submit" value="next">
+
+                    </form>
+
+                    </div>
+                    </body>
+                    </html>
