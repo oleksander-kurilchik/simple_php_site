@@ -25,7 +25,7 @@ class LoginView {
         $page =  file_get_contents("login.html");
           $page =  preg_replace('|{\$login}|im', $this->login,  $page);
           $page =  preg_replace('|{\$loginmessage}|im', $this->loginmessage,  $page);
-          $page =  preg_replace('|{\passwordmessage}|im', $this->passwordmessage,  $page);
+          $page =  preg_replace('|{\$passwordmessage}|im', $this->passwordmessage,  $page);
          
           return $page;
        

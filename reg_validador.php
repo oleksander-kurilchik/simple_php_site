@@ -102,7 +102,8 @@ class RegistrationValidator {
     }
 
     public static function isValidLogin( $login, &$match) {
-        if (preg_match('|^\s*((([[:alnum:]_]+[-_.]?)+[[:alnum:]_]+){6,40})\s*$|', $login, $matches) == true) {
+        /*узнать в чом ощибка*/
+        if (preg_match('|^\s*((([[:alnum:]]+[-_.]?)+[[:alnum:]]+){2,40})\s*$|', $login, $matches) == true) {
             $match = $matches[1];
             return true;
         }
