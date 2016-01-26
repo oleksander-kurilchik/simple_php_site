@@ -146,7 +146,8 @@ public static function isValidSex( $sex, &$match) {
 
         $addr = preg_replace('|[\s]{2,}|', ' ', $addr);
 
-        if (preg_match('|^\s*(([[:alpha:]]{2,}+[\s]*)+[[:alpha:]]+)\s*$|', $addr, $matches) == true) {
+       // if (preg_match('|^\s*(([[:alpha:]]{2,}+[\s]*)+[[:alpha:]]+)\s*$|', $addr, $matches) == true) {
+            if (preg_match('|^\s*([[:alpha:]]{2,})\s*$|', $addr, $matches) == true) {
             $match = $matches[1];
             return true;
         }
