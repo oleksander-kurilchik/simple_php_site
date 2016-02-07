@@ -3,11 +3,23 @@
 require_once './loginview.php';
 require_once './sqlregvalidator.php';
 require_once './reg_validador.php';
+require_once './SessionControler.php';
+require_once './LocationControler.php';
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+ 
+$session = new SessionControler();
+if($session->is_Session() == true)
+{
+    header("Location: ".LocationControler::getMainPage());
+    return;
+}
+
+
 $view = new LoginView(); ///потом попраить код
 $flag = true;
 if (!empty($_POST)) {
@@ -26,6 +38,11 @@ if (!empty($_POST)) {
     if ($flag == true) {
         echo 'Log in';
        echo "<H1>login and password corect</h1>";
+     $session->setLogin($_POST["login"]);
+     $session->setAdmission(SqlRegValidator::getAdmision($_POST["login"]));
+      $session->setId(SqlRegValidator::getId($_POST["login"]));
+      header("Location: ".LocationControler::getMainPage());
+       
        return;
     }
 } 

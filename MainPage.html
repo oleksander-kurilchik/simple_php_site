@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
-        #header{border-style: solid;}
+       
          #footer{border-style: solid;}
              div{border-style: solid;}
              #right_panel
@@ -26,8 +26,9 @@ and open the template in the editor.
              {
               height: 600px;
              }
-             #header_label
+             #header
              {
+                 border-style: solid;
                  min-height: 200px;
                 text-align: center;
                 padding-top: 30px;
@@ -46,31 +47,17 @@ and open the template in the editor.
     </head>
     <body>
         <div id="header" >
-            <div id="header_label" >News</div>
-            <div id="header_menu"> THIS Bmay has been menu</div>
-                
+            {$header}
         </div>
         <div id="main_place">
             <div id="right_panel">
-                <a href="" >Registration </a>
-                Aref
-                   <a href="" >Enter </a>
-                   <form id="enter_form" action="./" method="get">
-                   
-                <fieldset style="width:200px;" >
-        <legend>Enter login and password</legend>
-            <label>login <input type="text" id="id_login" size="30" maxlength="30"/> </label>  
-             <label>Password <input type="text" id="id_password" size="30" maxlength="30"/> </label>
-             <input type="submit" value="ENTER"/>
-            
-             </fieldset>
-                   </form>
-                
+               
+                 {$rightpanel}
             </div>
-        <div id="left_main_plase">dfg df</div>
+        <div id="left_main_plase">{$mainplace}</div>
             
         </div>
-        <div id="footer">df gds</div>
+        <div id="footer">{$footer}</div>
 
     </body>
 </html>

@@ -11,5 +11,5 @@
  * @author profesor
  */
 interface IMainPlaceDiv {
-    //put your code here
+    public function buildForm();
 }

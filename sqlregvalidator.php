@@ -54,4 +54,24 @@ class SqlRegValidator {
         return false;
         
     }
+     public static function getAdmision(  $login )
+    {
+         $password = sha1($password);
+        mysql_connect("localhost","root","1234");
+        mysql_select_db("my_first_site");
+       $result = mysql_query("select admission from  table_users where login=\"{$login}\"   limit 1  ");
+        $row=mysql_fetch_array($result);
+        return  $row["admission"];
+        
+    }
+     public static function getId(  $login )
+    {
+         $password = sha1($password);
+        mysql_connect("localhost","root","1234");
+        mysql_select_db("my_first_site");
+       $result = mysql_query("select id_user from  table_users where login=\"{$login}\"   limit 1  ");
+        $row=mysql_fetch_array($result);
+        return  $row["id_user"];
+        
+    }
 }

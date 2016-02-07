@@ -3,24 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/server3/IGlobalDiv.php</file>
-            <file>file:/var/www/server3/IHeaderDIv.php</file>
-            <file>file:/var/www/server3/registration.html</file>
             <file>file:/var/www/server3/MainPage.html</file>
-            <file>file:/var/www/server3/VievElement.html</file>
-            <file>file:/var/www/server3/newEmptyPHP.php</file>
-            <file>file:/var/www/server3/reg_validador.php</file>
-            <file>file:/var/www/server3/sqlusercreator.php</file>
-            <file>file:/var/www/server3/VievMaterial.html</file>
-            <file>file:/var/www/server3/VievComent.html</file>
-            <file>file:/var/www/server3/registration.php</file>
+            <file>file:/var/www/server3/forms/profileinfoview.html</file>
+            <file>file:/var/www/server3/forms/userpublications.html</file>
+            <file>file:/var/www/server3/forms/editprofile.html</file>
+            <file>file:/var/www/server3/library/GlobalDiv.php</file>
+            <file>file:/var/www/server3/library/UserEditProfileView.php</file>
+            <file>file:/var/www/server3/library/UserPublicationView.php</file>
+            <file>file:/var/www/server3/forms/publicationitrem%20.html</file>
+            <file>file:/var/www/server3/index.php</file>
+            <file>file:/var/www/server3/library/UserProfileView.php</file>
+            <file>file:/var/www/server3/forms/basepage.html</file>
             <file>file:/var/www/server3/sqlregvalidator.php</file>
-            <file>file:/var/www/server3/EditForm.html</file>
-            <file>file:/var/www/server3/IFooterDiv.php</file>
-            <file>file:/var/www/server3/IRightPanelDiv.php</file>
-            <file>file:/var/www/server3/IMainPlaceDiv.php</file>
-            <file>file:/var/www/server3/global.html</file>
-            <file>file:/var/www/server3/registrationview.php</file>
+            <file>file:/var/www/server3/profile/index.php</file>
+            <file>file:/var/www/server3/forms/profilerightpanel.html</file>
+            <file>file:/var/www/server3/interfaces/IFooterDiv.php</file>
+            <file>file:/var/www/server3/forms/userrightpanel.html</file>
+            <file>file:/var/www/server3/library/SessionControler.php</file>
+            <file>file:/var/www/server3/interfaces/IRightPanelDiv.php</file>
+            <file>file:/var/www/server3/library/ProfileRightPanel.php</file>
         </group>
     </open-files>
 </project-private>

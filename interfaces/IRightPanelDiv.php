@@ -11,5 +11,5 @@
  * @author profesor
  */
 interface IRightPanelDiv {
-    //put your code here
+    public function buildForm();
 }
