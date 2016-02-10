@@ -46,5 +46,6 @@ class LocationControler {
     {
         return self::getMainPage()."/exit.php";          
     }
+    
     //put your code here
 }

@@ -38,9 +38,13 @@ class LocationControler {
     {
         return self::getMainPage()."/admin";          
     }
-     public static function getUsersPage()
+     public static function getAdminUsersPage()
     {
-        return self::getMainPage()."/admin/users.php";          
+        return self::getMainPage()."/admin/user";          
+    }
+    public static function getAdminPublicationPage()
+    {
+        return self::getMainPage()."/admin/publication";          
     }
       public static function getExitPage()
     {
