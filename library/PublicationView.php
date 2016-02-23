@@ -58,7 +58,7 @@ class PublicationView implements IMainPlaceDiv {
           
            $commentitembase=  file_get_contents($this->pattern_comment_item);
            
-           print_r($this->arr_comments_list);
+          // print_r($this->arr_comments_list);
            $commentitemlist='';
            
             for($i=0;$i<count($this->arr_comments_list);$i++)
@@ -70,8 +70,11 @@ class PublicationView implements IMainPlaceDiv {
                 $commentitemlist = $commentitemlist.$commentitem;
             }
             
+              $commentform =  preg_replace('|{\$action}|im',"http://server3/viewpublic/addcomments.php",  $commentform);
+              $commentform =  preg_replace('|{\$id_publication}|im',$_GET["publication"],  $commentform);
             
-             $commentsview =  preg_replace('|{\$commentsform}|im',$commentform,  $commentsview);
+          
+              $commentsview =  preg_replace('|{\$commentsform}|im',$commentform,  $commentsview);
              $commentsview =  preg_replace('|{\$commentslist}|im',$commentitemlist,  $commentsview);
              
              $page =  preg_replace('|{\$comments}|im',$commentsview,  $page);
