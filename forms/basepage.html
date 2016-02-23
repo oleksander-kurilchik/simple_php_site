@@ -8,16 +8,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
 
+            
+            
+            
             #footer{border-style: solid;}
 
-            div{border-style: solid;}
+          
             #right_panel
             {float: left;
              width: 250px;
-             height: 600px;
+             min-height: 600px;
              display: block;
              padding: 1px;
-             position: static;
+            
 
 
 
@@ -28,11 +31,14 @@
 
 
             }
+          
+}
 
 
             #left_main_plase
             {
-                height: 600px;
+                min-height: 600px;
+                width: 100%;
             }
             #header
             {
@@ -51,25 +57,49 @@
             }
 
         </style>
+        <script language="JavaScript"> 
+            function tablechange()
+            {
+            var element = document.getElementById('right_panel');
+            var element1 = document.getElementById('left_main_plase');
+           // element1.style.width = 75%; 
+            //element1.style.width = 25%; 
+            }
+            </script>
 
     </head>
-    <body>
-        <div>
+<body  >     
+    <table  id="table1" cellspacing="0" border="1" width="100%">
+            <tbody>
+                <tr><td colspan="2">
         <div id="header" >
             {$header}
         </div>
-        <div id="main_place">
+                    </td>
+            </tr>
+            
+          
+                <tr>
+                    <td valign="top" width="250px;" >  
             <div id="right_panel">
                 {$rightpanel} 
-            </div>
+            </div></td> 
+            <td id="ddddd" valign="top" >
             <div id="left_main_plase">
                 {$mainplace}
             </div>
+                </td>
 
-        </div>
+        </tr>
+            </tbody> 
+            <tr>
+                <td colspan="2">
         <div id="footer">
             {$footer}
         </div>
-        </div>
+                </td>
+        </tr>
+        
+        </table>
     </body>
 </html>

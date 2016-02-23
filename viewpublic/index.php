@@ -39,11 +39,29 @@ where publications.id_user =table_users.id_user and publications.id_public ={$_G
             return;
            
        }
+       $row = mysql_fetch_array($result);
 
-$row = mysql_fetch_array($result);
+       
+        $result = mysql_query("select comments_of_pub.datepub, comments_of_pub.body_of_comment,table_users.login  
+from table_users,comments_of_pub
+where comments_of_pub.id_user=table_users.id_user and comments_of_pub.id_publications={$_GET["publication"]} order by id_comment
+; ");
+        //$row=mysql_fetch_array($result);
+        echo mysql_error();
+         while ($row_c = mysql_fetch_array($result))
+         {
+               $arr_comments[] = $row_c;
+           
+         }
+        
+        
+      
+
 
 
 $mainplace  = new PublicationView($row);
+$mainplace->arr_comments_list = $arr_comments;
+
 if($session->is_Session() ==false)
 {
     $rightp = new GuestRightPanel();
@@ -51,6 +69,7 @@ if($session->is_Session() ==false)
 }
 else
  {
+    $mainplace->create_comment = true;
 $rightp = new UserRightPanel();
 if($_SESSION["login"] ==$row["login"] ||$row["admission"]=="admin" )
 {
