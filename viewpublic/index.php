@@ -64,8 +64,8 @@ where comments_of_pub.id_user=table_users.id_user and comments_of_pub.id_publica
 
 
 
-$mainplace  = new PublicationView($row);
-$mainplace->arr_comments_list = $arr_comments;
+$mainplace  = new PublicationView($row,$arr_comments,1,0.3);
+///$mainplace->arr_comments_list = $arr_comments;
 
 if($session->is_Session() ==false)
 {
@@ -74,12 +74,12 @@ if($session->is_Session() ==false)
 }
 else
  {
-    $mainplace->create_comment = true;
+     $mainplace->setCommentable(true);
 $rightp = new UserRightPanel();
 if($_SESSION["login"] ==$row["login"] ||$row["admission"]=="admin" )
 {
     $mainplace->setEditeable(true);
-    $mainplace->setCommentable(true);
+   
 }    
 }
 

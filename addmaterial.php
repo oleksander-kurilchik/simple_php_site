@@ -1,7 +1,7 @@
 <?php
 
 require_once './SqlPostCreatot.php';
-require_once './SessionControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserRightPanel.php';

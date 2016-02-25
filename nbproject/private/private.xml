@@ -3,23 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/server3/forms/admin/commentviewitem.html</file>
-            <file>file:/var/www/server3/admin/index.php</file>
-            <file>file:/var/www/server3/admin/deletecomment.php</file>
-            <file>file:/var/www/server3/SqlPostCreatot.php</file>
-            <file>file:/var/www/server3/admin/user/userinfo.php</file>
-            <file>file:/var/www/server3/formaddmaterial.html</file>
-            <file>file:/var/www/server3/addmaterialview.php</file>
-            <file>file:/var/www/server3/index.php</file>
-            <file>file:/var/www/server3/library/AdminCommentsListView.php</file>
-            <file>file:/var/www/server3/profile/index.php</file>
-            <file>file:/var/www/server3/admin/user/useredit.php</file>
-            <file>file:/var/www/server3/library/admin/user/UserInfoView.php</file>
-            <file>file:/var/www/server3/library/AdminUsersListView.php</file>
-            <file>file:/var/www/server3/admin/user/userdelete.php</file>
-            <file>file:/var/www/server3/forms/admin/user/userinfoview.html</file>
+            <file>file:/var/www/server3/reg_validador.php</file>
+            <file>file:/var/www/server3/library/PublicationView.php</file>
+            <file>file:/var/www/server3/viewpublic/ratingaction.php</file>
+            <file>file:/var/www/server3/library/admin/AdminCommentsListView.php</file>
+            <file>file:/var/www/server3/forms/rating/ratingdelete.html</file>
+            <file>file:/var/www/server3/library/PublicationLIstView.php</file>
+            <file>file:/var/www/server3/registration.php</file>
+            <file>file:/var/www/server3/viewpublic/deletepublication.php</file>
+            <file>file:/var/www/server3/viewpublic/editpublication.php</file>
+            <file>file:/var/www/server3/forms/rating/ratinginsertform.html</file>
+            <file>file:/var/www/server3/viewpublic/index.php</file>
             <file>file:/var/www/server3/addmaterial.php</file>
-            <file>file:/var/www/server3/library/admin/user/UserDeleteView.php</file>
+            <file>file:/var/www/server3/registrationview.php</file>
+            <file>file:/var/www/server3/viewpublic/setratingpub.php</file>
         </group>
     </open-files>
 </project-private>

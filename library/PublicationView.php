@@ -22,11 +22,11 @@ class PublicationView implements IMainPlaceDiv {
     private $is_editable = false;
     private $is_commentable = false;
     private $pattern;
-    public $arr_data;
+    private $arr_data;
     private $pattern_comment_form;
     private $pattern_action_publicaton;
     private $pattern_comment_view;
-    public $arr_comments_list;
+    private $arr_comments_list;
     private $rating_action;
     private $rating;
 
@@ -48,10 +48,7 @@ class PublicationView implements IMainPlaceDiv {
         $this->rating_action = $rating_action;
         $this->rating = $rating;
     }
-    private function getRetingView()
-    {
-        
-    }
+    
 
     public function buildForm() {
 
@@ -80,7 +77,7 @@ class PublicationView implements IMainPlaceDiv {
         }
         
         $ratingview =  new RatingActionView($this->rating_action ,$_GET["publication"]);
-        $rating_result  = new BaseView(array("rating_result"=>$this->rating ),$_SERVER['DOCUMENT_ROOT'] . "/forms/rating/ratingresult.html");
+        $rating_result  = new BaseView(array("rating_result"=>$this->rating?$this->rating:"За матеріал ніхто не голосував"  ),$_SERVER['DOCUMENT_ROOT'] . "/forms/rating/ratingresult.html");
         
         
         
