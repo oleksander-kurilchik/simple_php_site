@@ -54,5 +54,17 @@ class LocationControler {
     {
         return self::getMainPage()."/viewpublic/";          
     }
+    
+    
+    
+    
+    
+    
+    
+    
+     public static function getActionCommentPage()
+    {
+        return self::getMainPage()."/comments/";          
+    }
     //put your code here
 }

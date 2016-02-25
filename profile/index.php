@@ -1,12 +1,12 @@
 <?php
-require_once '../library/UserPublicationView.php';
-require_once '../library/LocationControler.php';
-require_once '../library/SessionControler.php';
-require_once '../library/ProfileRightPanel.php';
-require_once '../library/UserProfileView.php';
-require_once '../library/UserPublicationView.php';
-require_once '../library/UserEditProfileView.php';
-require_once '../library/GlobalDiv.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/profile/UserPublicationView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/SessionControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/profile/ProfileRightPanel.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/profile/UserProfileView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/profile/UserPublicationView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/profile/UserEditProfileView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/GlobalDiv.php';
 
 $session = new SessionControler();
 

@@ -1,5 +1,10 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/interfaces/IMainPlaceDiv.php';
+
+require_once $_SERVER['DOCUMENT_ROOT'] . '/interfaces/IMainPlaceDiv.php';
+
+require_once '/var/www/server3/library/BaseView.php';
+require_once '/var/www/server3/library/CommentViewItem.php';
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,88 +18,75 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/interfaces/IMainPlaceDiv.php';
  * @author profesor
  */
 class PublicationView implements IMainPlaceDiv {
-    private $f_editable = false;
+
+    private $is_editable = false;
+    private $is_commentable = false;
     private $pattern;
-     public $arr_data;
-     public $create_comment = false;
-     private $pattern_comment_form;
-     private $pattern_comment_item;
-     private $pattern_comment_view;
-     public $arr_comments_list;
-    
-    public function __construct ($data)
-    {
-       $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/publicationview.html";
-         $this->pattern_comment_form = $_SERVER['DOCUMENT_ROOT']."/forms/commentform.html";
-           $this->pattern_comment_item = $_SERVER['DOCUMENT_ROOT']."/forms/commentitem.html";
-           $this->pattern_comment_view = $_SERVER['DOCUMENT_ROOT']."/forms/commentsview.html";
-       $this->arr_data = $data;
-        
+    public $arr_data;
+    public $create_comment = false;
+    private $pattern_comment_form;
+    private $pattern_action_publicaton;
+    private $pattern_comment_view;
+    public $arr_comments_list;
+
+    public function setEditeable($flag) {
+        $this->is_editable = $flag;
     }
-    
-    public function buildForm()
-    {
-            
-        
-          $page =  file_get_contents($this->pattern);
-          
-         
-          $page =  preg_replace('|{\$id_publication}|im',  $this->arr_data["id_public"],  $page);
-          $page =  preg_replace('|{\$header}|im', $this->arr_data["header_of_pub"],  $page);
-          $page =  preg_replace('|{\$publicationbody}|im', $this->arr_data["body_of_pub"],  $page);
-          $page =  preg_replace('|{\$dateofpublication}|im',  $this->arr_data["date_of_creation"],  $page);
-          $page =  preg_replace('|{\$dateoflastedit}|im', $this->arr_data["date_of_last_edit"],  $page);
-          $page =  preg_replace('|{\$user}|im', $this->arr_data["login"],  $page);
-          $page =  preg_replace('|{\$editable}|im',"sdjf kjdkjhdfhkjv hkfj",  $page);
-         
-          
-          $commentform =null;   
-            if($this->create_comment == true)
-            {
-            $commentform  =  file_get_contents($this->pattern_comment_form);
-            }
-            
-            $commentsview =  file_get_contents($this->pattern_comment_view);
-          
-           $commentitembase=  file_get_contents($this->pattern_comment_item);
-           
-          // print_r($this->arr_comments_list);
-           $commentitemlist='';
-           
-            for($i=0;$i<count($this->arr_comments_list);$i++)
-            {
-                 $commentitem =   $commentitembase;
-                 $commentitem =  preg_replace('|{\$username}|im',$this->arr_comments_list[$i]['login'],  $commentitem);
-                 $commentitem =  preg_replace('|{\$commentbody}|im',$this->arr_comments_list[$i]['body_of_comment'],  $commentitem);
-                 $commentitem =  preg_replace('|{\$datetimecomment}|im',$this->arr_comments_list[$i]['datepub'], $commentitem);
-                $commentitemlist = $commentitemlist.$commentitem;
-            }
-            
-              $commentform =  preg_replace('|{\$action}|im',"http://server3/viewpublic/addcomments.php",  $commentform);
-              $commentform =  preg_replace('|{\$id_publication}|im',$_GET["publication"],  $commentform);
-            
-          
-              $commentsview =  preg_replace('|{\$commentsform}|im',$commentform,  $commentsview);
-             $commentsview =  preg_replace('|{\$commentslist}|im',$commentitemlist,  $commentsview);
-             
-             $page =  preg_replace('|{\$comments}|im',$commentsview,  $page);
-            
-            return $page;  
-           
-          
-        
-        
-        
-        
-        
+
+    public function setCommentable($flag) {
+        $this->is_commentable = $flag;
     }
-     public function setPublicationEditable( $flag)
-    {
-         if($flag ===true)
-         {$this->f_editable =true;     }
- else {$this->f_editable =false;  }
+
+    public function __construct($data_of_pub, $rating = 0) {
+        $this->pattern = $_SERVER['DOCUMENT_ROOT'] . "/forms/publicationview.html";
+        $this->pattern_comment_form = $_SERVER['DOCUMENT_ROOT'] . "/forms/commentform.html";
+        $this->pattern_action_publicaton = $_SERVER['DOCUMENT_ROOT'] . "/forms/actionpublicationview.html";
+        $this->pattern_comment_view = $_SERVER['DOCUMENT_ROOT'] . "/forms/commentsview.html";
+        $this->arr_data = $data_of_pub;
     }
-    
+
+    public function buildForm() {
+
+        //$page = new BaseView($this->arr_data,$this->pattern);
+
+
+
+
+        $commentform = null;
+        if ($this->is_commentable == true) {
+            $commentform = new BaseView(array("action" => LocationControler::getMainPage()
+                . "/viewpublic/addcomments.php", "id_publication" => $_GET["publication"])
+                    , $this->pattern_comment_form);
+        }
+
+        $editform = null;
+        if ($this->is_editable == true) {
+            $editform = new BaseView(array("action_delete" => LocationControler::getMainPage()."/viewpublic/deletepublication.php"
+                ,"action_edit" => LocationControler::getMainPage()."/viewpublic/editpublication.php"
+                , "id_publication" => $_GET["publication"])
+                    , $this->pattern_action_publicaton);
+        }
+
+
+        $commentsview = file_get_contents($this->pattern_comment_view);
+        $commentitemlist = '';
+        for ($i = 0; $i < count($this->arr_comments_list); $i++) {
+            $commentitem = new CommentViewItem($this->arr_comments_list[$i], $this->arr_comments_list[$i]["editable"]);
+            $commentitemlist = $commentitemlist . $commentitem;
+        }
+        $commentsview = preg_replace('|{\$commentsform}|im', $commentform, $commentsview);
+        $commentsview = preg_replace('|{\$commentslist}|im', $commentitemlist, $commentsview);
+
+        // $page =  preg_replace('|{\$comments}|im',$commentsview,  $page);
+        $this->arr_data["comments"] = $commentsview;
+         $this->arr_data["editable"] = $editform;
+
+        $page = new BaseView($this->arr_data, $this->pattern);
+
+
+
+        return $page;
+    }
 
 //put your code here
 }

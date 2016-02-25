@@ -19,8 +19,8 @@ class AdminUsersListView implements IMainPlaceDiv {
     private $patternitem;
     public function __construct()
     {
-        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/adminuserlist.html";
-         $this->patternitem  = $_SERVER['DOCUMENT_ROOT']."/forms/adminuserlistitem.html";
+        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/admin/adminuserlist.html";
+         $this->patternitem  = $_SERVER['DOCUMENT_ROOT']."/forms//admin/adminuserlistitem.html";
         
     }
     public function buildForm() 

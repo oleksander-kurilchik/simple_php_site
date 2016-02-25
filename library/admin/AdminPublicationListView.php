@@ -20,8 +20,8 @@ class AdminPublicationListView implements IMainPlaceDiv {
     public function __construct() 
     {
         
-        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/adminpublicationlist.html";
-         $this->patternitem  = $_SERVER['DOCUMENT_ROOT']."/forms/adminpublicationlistitem.html";
+        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/admin/adminpublicationlist.html";
+         $this->patternitem  = $_SERVER['DOCUMENT_ROOT']."/forms/admin/adminpublicationlistitem.html";
     }
     
     

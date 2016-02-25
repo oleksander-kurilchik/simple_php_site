@@ -2,11 +2,11 @@
 
 require_once '/var/www/server3/library/LocationControler.php';
 require_once '/var/www/server3/library/SessionControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/AdminRightPanel.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminRightPanel.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/GlobalDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/AdminCommentsListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/AdminPublicationListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/AdminRightPanel.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminCommentsListView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminPublicationListView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminRightPanel.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/user/UserInfoView.php';
 
 

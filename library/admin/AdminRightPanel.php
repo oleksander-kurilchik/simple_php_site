@@ -20,7 +20,7 @@ class AdminRightPanel implements IRightPanelDiv
     private $pattern;
     public function __construct()
     {
-        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/adminrightpanel.html";
+        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/admin/adminrightpanel.html";
         
     }
     

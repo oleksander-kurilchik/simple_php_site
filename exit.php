@@ -1,5 +1,5 @@
 <?php
-require_once './LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
 session_start();
 /* 
  * To change this license header, choose License Headers in Project Properties.

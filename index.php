@@ -1,9 +1,10 @@
 <?php
 
-require_once './SessionControler.php';
-require_once './GuestRightPanel.php';
-require_once './UserRightPanel.php';
-require_once './library/GlobalDiv.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/SessionControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/GuestRightPanel.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserRightPanel.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/GlobalDiv.php';
 
 $session = new SessionControler();
 

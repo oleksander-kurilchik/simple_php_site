@@ -3,8 +3,8 @@
 require_once './loginview.php';
 require_once './sqlregvalidator.php';
 require_once './reg_validador.php';
-require_once './SessionControler.php';
-require_once './LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/SessionControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
