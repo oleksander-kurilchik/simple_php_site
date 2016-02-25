@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/interfaces/IMainPlaceDiv.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,11 +12,12 @@
  *
  * @author profesor
  */
-class AddMaterialView {
+class AddMaterialView implements IMainPlaceDiv  {
     public $header;
     public $material;
     public $headermessage;
     public $materialmessage;
+    public $materrialaddedmessage; 
      public function __construct()
     {
         
@@ -28,6 +30,7 @@ class AddMaterialView {
           $page =  preg_replace('|{\$material}|im', $this->material,  $page);
           $page =  preg_replace('|{\$headermessage}|im', $this->headermessage,  $page);
           $page =  preg_replace('|{\$materialmessage}|im', $this->materialmessage,  $page);
+          $page =  preg_replace('|{\$materrialaddedmessage}|im', $this->materrialaddedmessage,  $page);
           return $page;
         
     }

@@ -40,7 +40,7 @@ class AdminUsersListView implements IMainPlaceDiv {
              $pibitem = preg_replace('|{\$email}|im', $row["email"], $pibitem);
             $pibitem = preg_replace('|{\$admission}|im', $row["admission"], $pibitem);
             //$pibitem = preg_replace('|{\$dateofcreation}|im', $row["date_of_creation"], $pibitem); dorabotat
-            $pibitem = preg_replace('|{\$useraddr}|im',LocationControler::getAdminUsersPage()."/?login={$row["login"]}", $pibitem);
+            $pibitem = preg_replace('|{\$useraddr}|im',LocationControler::getAdminUsersPage()."?login={$row["login"]}", $pibitem);
             $publicitemsresult = $publicitemsresult. $pibitem;
             
           

@@ -40,7 +40,7 @@ class LocationControler {
     }
      public static function getAdminUsersPage()
     {
-        return self::getMainPage()."/admin/user";          
+        return self::getMainPage()."/admin/user/userinfo.php";          
     }
     public static function getAdminPublicationPage()
     {

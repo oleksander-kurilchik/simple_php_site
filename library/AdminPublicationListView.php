@@ -27,9 +27,16 @@ class AdminPublicationListView implements IMainPlaceDiv {
     
     public function buildForm() 
     {
+        
+        $lllll="" ;
+    if(isset( $_GET["user"]))
+    {
+       $lllll  = " and table_users.login=\"". $_GET["user"]. "\"";  
+    }
+        
          mysql_connect("localhost", "root", "1234");
         mysql_select_db("my_first_site");
-        $result = mysql_query("select * from publications,table_users where publications.id_user=table_users.id_user ");
+        $result = mysql_query("select * from publications,table_users where publications.id_user=table_users.id_user ".$lllll);
         //$row=mysql_fetch_array($result);
         $pibitembase = file_get_contents($this->patternitem);
         

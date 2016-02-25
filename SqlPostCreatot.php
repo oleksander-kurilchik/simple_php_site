@@ -37,10 +37,10 @@ class SqlPostCreatot
                . "values(\"{$this->header}\",\"{$this->post_data}\",\"{$this->dateofcretion}\",\"{$this->dateoflastEdit}\","
                . "\"{$this->id_user}\" ) "; 
                 
-       echo $query."<br>";
+      
                 
        $result = mysql_query($query);
-       die(mysql_error());   
+       
 }
     //put your code here
 }
