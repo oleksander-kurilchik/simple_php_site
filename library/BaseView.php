@@ -33,6 +33,7 @@ class BaseView   {
     }
     
     public function __toString() {
+        
         return  $this->page;
     }
 

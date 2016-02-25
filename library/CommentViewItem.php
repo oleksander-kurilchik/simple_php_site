@@ -27,8 +27,8 @@ class CommentViewItem
     {
         $this->data_comment = $data_comment;
         $this->is_action = $is_action;
-        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/form/commentitem.html";
-        $this->pattern_action = $_SERVER['DOCUMENT_ROOT']."/form/commentaction.html";
+        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/commentitem.html";
+        $this->pattern_action = $_SERVER['DOCUMENT_ROOT']."/forms/commentaction.html";
         
         
         $this->data_view =  file_get_contents($this->pattern);
