@@ -20,7 +20,7 @@ if ($session->is_Session() == false) {
 
 
 
-$globaldiv = new GlobalDiv(/* $head, */ $rightp , new PublicationListView (1)/*, $foot */);
+$globaldiv = new GlobalDiv(/* $head, */ $rightp , new PublicationListView (2,3,"http://server3/index.php?uuu=uuu")/*, $foot */);
 
 
 

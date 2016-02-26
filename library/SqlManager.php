@@ -24,7 +24,7 @@ $current = array ("address"=>"","text"=>"current page 3");
 $prev = array ("address"=>"http://prev","text"=>" Prev Page 2");
 $next = array ("address"=>"http://next","text"=>" Next Page 4");
 
-   $pppp = new PublicationNavigator($current,$prev,$next);
+   $pppp = new PublicationNavigator($current,$prev,0);
    echo $pppp;
    
    

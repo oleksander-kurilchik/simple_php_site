@@ -21,7 +21,7 @@ class PublicationNavigator
         $btn_ptn = $_SERVER['DOCUMENT_ROOT']."/forms/navigation/PublicationNavigatorButton.html";
         $btni_ptn = $_SERVER['DOCUMENT_ROOT']."/forms/navigation/PublicationNavigatorButtonInactive.html";
         
-        
+        $current=$next=$prev="";
         if($currentpage!=0)
         {
             $current = new BaseView ($currentpage , $btni_ptn);
