@@ -24,8 +24,12 @@ class BaseView   {
        
        foreach ($data as $key => $value)
        {
-            $this->page =  preg_replace('|{\$'.$key.'}|im', $value,  $this->page);          
+            $this->page =  preg_replace('|<\$'.$key.'>|im', $value,  $this->page);  
+            
+            
        }
+       echo '<pre>';
+             
      
        
        

@@ -49,7 +49,7 @@ class AdminCommentsListView implements IMainPlaceDiv {
         //$row=mysql_fetch_array($result);
         $commentitembase = file_get_contents($this->patternitem);
         
-        print_r(mysql_error());
+        print_r($result."<br>");
         
         $commentitemsresult = '';
         while ($row = mysql_fetch_array($result))
