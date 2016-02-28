@@ -52,7 +52,7 @@ class LocationControler {
     }
       public static function getPublicationPage()
     {
-        return self::getMainPage()."/viewpublic/";          
+        return self::getMainPage()."/viewpublic/index.php";          
     }
     
     

@@ -23,11 +23,30 @@ class SessionControler {
     }
     return false;
 }
+  static public function is_Session_static()
+    {       
+        if(isset($_SESSION['login']))    {
+    return true;
+    }
+    return false;
+}
+
 
 public  function setLogin($login)
 {
     $_SESSION['login'] = $login;
 }
+static public  function getCurrentLogin()
+{
+    return $_SESSION['login'];
+}
+static public  function getCurrentId()
+{
+    return $_SESSION['id'];
+}
+
+
+
 public  function setId($id)
 {
     $_SESSION['id'] = $id;
@@ -36,7 +55,24 @@ public  function setAdmission($admission)
 {
     $_SESSION['admission'] = $admission;
 }
-    public function __destruct () 
+
+public function isAdmin()
+{
+    if($_SESSION['admission']==="admin")
+        return true;
+    return false;
+}
+
+static public function isAdmin_current()
+{
+    if($_SESSION['admission']==="admin")
+        return true;
+    return false;
+}
+
+
+
+public function __destruct () 
     {
         
     }

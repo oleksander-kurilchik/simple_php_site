@@ -1,10 +1,10 @@
 <?php
-
+session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationNavigator.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListView.php';
 
 
 /*
@@ -20,11 +20,16 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationNavigator.php';
  * 
  * 
  */
+/*
+
 $current = array ("address"=>"","text"=>"current page 3");
 $prev = array ("address"=>"http://prev","text"=>" Prev Page 2");
 $next = array ("address"=>"http://next","text"=>" Next Page 4");
+*/
+$jhfdj = (float) "NULL";
+ echo $jhfdj ;
 
-   $pppp = new PublicationNavigator($current,$prev,0);
+   $pppp = new CommentListView(0);
    echo $pppp;
    
    

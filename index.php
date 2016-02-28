@@ -19,12 +19,29 @@ if ($session->is_Session() == false) {
 }
 
 
+    
 
-$globaldiv = new GlobalDiv(/* $head, */ $rightp , new PublicationListView (2,3,"http://server3/index.php?uuu=uuu")/*, $foot */);
+if(isset($_GET["page"]))
+{
+    $page = (integer) $_GET["page"];
+}
+else
+    {
+    $page=1;
+    
+}
 
+    if($page<=0)
+    {
+      $page=1;  
+    }
+
+
+$globaldiv = new GlobalDiv(/* $head, */ $rightp , new PublicationListView ($page,"http://server3/index.php?<\$page_number>","")/*, $foot */);
 
 
 echo $globaldiv->buildForm();
+echo "ssddsd";
 echo '<pre>';
 print_r($_SESSION);
 echo '</pre>';

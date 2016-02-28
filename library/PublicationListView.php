@@ -7,33 +7,44 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
 
 class PublicationListView implements IMainPlaceDiv {
     private $page;
-    private $login;
+    private $query;
     private $count_page;
     private $current_url;
     
-    public function __construct($page,$count_page=0,$current_url=0,$login=0)
+    public function __construct($page,$current_url_pattern=0,$query=0)
     {
         $this->page = $page;
-        $this->login = $login;
-        $this->count_page = $count_page;
-        $this->current_url = $current_url;
+        $this->query = $query;
+        $this->current_url = $current_url_pattern;
 
         
     }
-    private function getDataFromDB($page,$login)
+    private function getDataFromDB($page)
     {
           mysql_connect("localhost", "root", "1234");
         mysql_select_db("my_first_site");
         mysql_connect("localhost", "root", "1234");
         mysql_select_db("my_first_site");
-        $result = mysql_query("select * from publications,table_users where publications.id_user=table_users.id_user limit ".((string)($page-1)*6) .", ". ((string)6));
-        mysql_close();
+        $result = mysql_query("select  publications.id_public ,publications.date_of_creation,publications.body_of_pub,publications.header_of_pub, table_users.login   from publications,table_users"
+                . " where publications.id_user=table_users.id_user ".$this->query." order by publications.id_public    limit ".((string)($page-1)*6) .", ". ((string)6). " ");
+        
         
         print_r(mysql_error());
         
-      
+      $arr_get=array();
         while ($row = mysql_fetch_array($result))
                 { $arr_get[]=$row; }
+           
+      $result = mysql_query("select  count(*)    from publications,table_users"
+                . " where publications.id_user=table_users.id_user ".$this->query."   ");
+        
+             $row = mysql_fetch_array($result);
+              $this->count_page = ceil($row["count(*)"]/6);
+             // print_r( $this->count_page );
+                       
+                
+                
+ mysql_close();
                 return $arr_get;
         
     }
@@ -41,32 +52,43 @@ class PublicationListView implements IMainPlaceDiv {
         public function buildForm()
          {
            $list_pub="";
-           $arr_list = $this->getDataFromDB(1,0);
-           print_r($arr_list);
+           $arr_list = $this->getDataFromDB($this->page);
+          // print_r($arr_list);
            foreach ($arr_list as $key => $value )
-           {    $item = new BaseView($value,$_SERVER['DOCUMENT_ROOT'] ."/forms/publicationitem.html");
+           {   
+               
+               $value["pub_addres"] = LocationControler::getPublicationPage()."?publication=".$value["id_public"];
+               
+               $item = new BaseView($value,$_SERVER['DOCUMENT_ROOT'] ."/forms/publicationitem.html");
                   
            
                    
                $list_pub =$list_pub. $item;
            }
+           
+           ///navigator
+          
+            
+           $next=$prev=$current=0;
                    if(( $this->count_page - $this->page ) > 0)
                    {
-                      $next = array ("address"=>$this->current_url."&page=".($this->page+1),"text"=>" Next Page ".($this->page+1)); 
+                       $url = preg_replace('|<\$page_number>|im', "page=".($this->page+1), $this->current_url);
+                      $next = array ("address"=> $url,"text"=>" Next Page ".($this->page+1)); 
                    }
                     if($this->page  >1)
                    {
-                      $prev = array ("address"=>$this->current_url."&page=".($this->page-1),"text"=>" Prev Page ".($this->page-1)); 
+                        $url = preg_replace('|<\$page_number>|im', "page=".($this->page-1), $this->current_url);
+                      $prev = array ("address"=>$url,"text"=>" Prev Page ".($this->page-1)); 
                    }
                     if($this->page  >0)
                    {
-                      $current = array ("address"=>$this->current_url."&page=".($this->page),"text"=>" Current Page ".($this->page)); 
+                      $current = array ("address"=>"","text"=>" Current Page ".($this->page)); 
                    }
                    
                    
            $navigator = new PublicationNavigator($current,$prev,$next);
            
-           $page = new BaseView(array("publication_list"=>$list_pub,navigator=>$navigator),"/var/www/server3/forms/publicationlistview.html");
+           $page = new BaseView(array("publication_list"=>$list_pub,"navigator"=>$navigator),"/var/www/server3/forms/publicationlistview.html");
            
            
            return  $page;
