@@ -87,6 +87,8 @@ where publications.id_user =table_users.id_user and publications.id_public ={$_G
           ///////////////////////////rating result 
           $result = mysql_query("select (SUM(rating)/count(*)) from  rating_of_pub where id_publication={$id_publication}");
           $row_rating = mysql_fetch_array($result);
+          
+          
           $rating=(float) $row_rating[0]; 
           
         //select (SUM(rating)/count(*)) from  rating_of_pub where id_publication=1          
