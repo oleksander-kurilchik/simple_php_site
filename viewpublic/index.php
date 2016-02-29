@@ -24,7 +24,7 @@ if($_GET["publication"]==NULL||(preg_match('|^[0-9]++$|', $_GET["publication"])=
    return;
    
 }
-
+/*
   mysql_connect("localhost", "root", "1234");
         mysql_select_db("my_first_site");
         $result = mysql_query("select publications.id_public , publications.header_of_pub,publications.body_of_pub
@@ -59,12 +59,12 @@ where comments_of_pub.id_user=table_users.id_user and comments_of_pub.id_publica
            
          }
         
-        
+        */
       
 
 
 
-$mainplace  = new PublicationView($row,$arr_comments,1,0.3);
+$mainplace  = new PublicationView($_GET["publication"]);
 ///$mainplace->arr_comments_list = $arr_comments;
 
 if($session->is_Session() ==false)
@@ -74,13 +74,9 @@ if($session->is_Session() ==false)
 }
 else
  {
-     $mainplace->setCommentable(true);
+    
 $rightp = new UserRightPanel();
-if($_SESSION["login"] ==$row["login"] ||$row["admission"]=="admin" )
-{
-    $mainplace->setEditeable(true);
-   
-}    
+ 
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +15,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
  */
 class CommentViewItem 
 {
-    private $pattern;
+    protected $pattern;
     private $pattern_action;
     private $is_action = false;
     private $data_comment;
@@ -25,36 +25,38 @@ class CommentViewItem
             
     function __construct($data_comment,$is_action=false ) 
     {
+        $this->initPattern();
         $this->data_comment = $data_comment;
         $this->is_action = $is_action;
-        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/commentitem.html";
+       
         $this->pattern_action = $_SERVER['DOCUMENT_ROOT']."/forms/commentaction.html";
         
         
-        $this->data_view =  file_get_contents($this->pattern);
+       // $this->data_view =  file_get_contents($this->pattern);
         $data_view_action="";
         if($this->is_action ==true)
         {
-            $data_view_action =  file_get_contents($this->pattern_action);
-            $data_view_action =  preg_replace('|{\$action_comment}|im', LocationControler::getActionCommentPage()."deletecomment.php",  $data_view_action);
-                       
+            $data_view_action  = new BaseView(array("action_comment"=>LocationControler::getActionCommentPage()."deletecomment.php","id_comment"=>$this->data_comment["id_comment"]),$this->pattern_action);
+                        
         }
         
-        $this->data_view =  preg_replace('|{\$action_comment}|im', $data_view_action,  $this->data_view);
+             
+        $this->data_comment["action_comment"]=$data_view_action;
         
-        foreach ($this->data_comment as $key => $value)
-        {           
-             $this->data_view =  preg_replace('|{\$'.$key.'}|im', $value,  $this->data_view);
-        }
+        $this->data_view = new BaseView($this->data_comment,$this->pattern);
         
         
         
         
     }
-    
+    protected function initPattern()
+    {
+          $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/commentitem.html";
+    }
+            
     function __ToString()
     {
-        return $this->data_view;
+        return $this->data_view->__ToString();
         
     }
     //put your code here

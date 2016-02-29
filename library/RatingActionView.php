@@ -39,7 +39,7 @@ break;
 }
 public function __toString() 
         {
-    print_r($this->view->__toString());
+   
     return $this->view->__toString();
 
 }
