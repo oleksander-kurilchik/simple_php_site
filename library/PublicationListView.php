@@ -11,7 +11,7 @@ class PublicationListView implements IMainPlaceDiv {
     private $count_page;
     private $current_url;
     
-    public function __construct($page,$current_url_pattern=0,$query=0)
+    public function __construct($page,$current_url_pattern=null,$query=null)
     {
         $this->page = $page;
         $this->query = $query;
@@ -88,7 +88,7 @@ class PublicationListView implements IMainPlaceDiv {
                    
            $navigator = new PublicationNavigator($current,$prev,$next);
            
-           $page = new BaseView(array("publication_list"=>$list_pub,"navigator"=>$navigator),"/var/www/server3/forms/publicationlistview.html");
+           $page = new BaseView(array("publication_list"=>$list_pub,"navigator"=>$navigator),$_SERVER['DOCUMENT_ROOT']."/forms/publicationlistview.html");
            
            
            return  $page;
