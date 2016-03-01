@@ -18,12 +18,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
  */
 class UserInfoView implements IMainPlaceDiv
 {
-    private  $pattern;
+    protected  $pattern;
     private $login;
     private $page;
-    public function __construct ($login,$is_editable=0)
+    public function __construct ($login)
     {
-                $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/user/userinfoview.html";
+                $this->initPattern();
                 
                 mysql_connect("localhost", "root", "1234");
         mysql_select_db("my_first_site");
@@ -48,7 +48,12 @@ where table_users.login = \"{$login}\" LIMIT 1; ");
  $this->page = new BaseView($row,$this->pattern)    ;  
         
     }
-    
+    protected function  initPattern()
+    {
+       $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/user/userinfoview.html"; 
+    }
+
+
     public function buildForm() {
       
           return $this->page->__ToString();

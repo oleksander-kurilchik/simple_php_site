@@ -6,6 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserInfoView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserInfoViewLite.php';
 
 
 /*
@@ -28,7 +29,7 @@ $prev = array ("address"=>"http://prev","text"=>" Prev Page 2");
 $next = array ("address"=>"http://next","text"=>" Next Page 4");
 */
 
-$pppp = new UserInfoView("user11");
+$pppp = new UserInfoViewLite ("user11");
   /// $pppp = new CommentListView(0);
    echo $pppp->buildForm();
    
