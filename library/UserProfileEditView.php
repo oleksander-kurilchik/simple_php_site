@@ -52,10 +52,7 @@ where table_users.login = \"{$login}\" LIMIT 1; ");
  
  $this->page = new BaseView($this->arr,$this->pattern) ;
 $this->page->deleteAllMarks();
-
-
-//$this->page->deleteAllMarks();
-        
+    
        
     }
     protected function initPattern()

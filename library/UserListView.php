@@ -38,7 +38,7 @@ class UserListView implements IMainPlaceDiv{
 
         $this->query = "select * from  table_users {$this->query} order by id_user    limit " . ((string) ($page - 1) * 5) . ", " . ((string) 5) . " ";
 
-        print_r(  $this->query);
+       
         
         $result = mysql_query($this->query);
         $useritemsresult = '';

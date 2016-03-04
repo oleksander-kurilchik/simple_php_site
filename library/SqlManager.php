@@ -46,11 +46,3 @@ echo " pib added" ;
    
 //$db = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
 
-class SqlManager {
-     function __construct(  ) {
-        
-    }
-
-
-    //put your code here
-}

@@ -12,6 +12,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminRightPanel.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminUsersListView.php';
 
 
+
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserListView.php';
 $session = new SessionControler();
 
 if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
@@ -21,7 +24,7 @@ if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
 }
 if((isset( $_GET["section"]))==false)
 {
-     header("Location: ".LocationControler::getAdminPage()."?section=userlisl"); 
+     header("Location: ".LocationControler::getAdminPage()."/index.php?section=userlisl"); 
    
     return;
 }
@@ -30,10 +33,21 @@ if((isset( $_GET["section"]))==false)
 $rightp;
 $rightp = new AdminRightPanel();
 $mainplace;
+ if (!isset($_GET["page"])) {
+        $page = 1;
+    } 
+ else {
+        $page = (int) $_GET["page"];
+        if ($page <= 0) {
+            $page = 1;
+        }
+    }
+
+
 
 if($_GET["section"] =="userlisl")
 {
-    $mainplace = new AdminUsersListView();
+    $mainplace = new UserListView($page, LocationControler::getMainPage(). "/admin/index.php?section=userlisl&<\$page_number>");
 }
 elseif ($_GET["section"] =="publications")
 {
