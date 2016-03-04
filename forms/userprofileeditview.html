@@ -1,0 +1,78 @@
+<form action="<$action_epi>" method="POST">
+    <input type="hidden" name="id_user" value="<$id_user>">
+    <table>
+        <tbody>
+
+            <tr><td colspan="3">Edit Personal info of user "<$login>" </td></tr>
+            <tr><td >Current first name <$first_name>  </td></tr>
+            <tr><td>Edit first name </td><td><input type="text" name="first_name" placeholder="Enter first name"> </td><td><$first_name_m> </td>   </tr>
+            <tr><td >Current seconf name <$second_name>  </td></tr>
+            <tr><td>Edit second name </td><td><input type="text" name="second_name" placeholder="Enter second name"> </td><td><$second_name_m> </td>   </tr>
+            <tr><td >Current last name <$last_name>  </td></tr>
+            <tr><td>Edit last name </td><td><input type="text" name="last_name" placeholder="Enter last name"> </td><td><$last_name_m> </td>   </tr>
+
+
+            <tr><td >Current address <$address>  </td></tr>
+            <tr><td>Edit address </td><td><input type="text" name="address" placeholder="Enter Address"> </td><td><$address_m> </td>   </tr>
+
+            <tr><td >Current date of birth <$date_of_birth>  </td></tr>
+            <tr><td>Edit name date of birth  </td><td><input type="date" name="date_of_birth" > </td><td><$date_of_birth_m> </td>   </tr>
+
+
+            <tr><td >Current sex <$sex>  </td></tr>
+            <tr><td>Edit sex  </td><td>
+                    <select name="sex"   >
+                                <option disabled>Edit sex</option>
+                        <option value="no_edit" selected>No Edit Sex</option>
+                        <option value="male">Male</option >
+                        <option value="female"> Female</option>
+                    </select>
+                </td><td><$sex_m> </td>   </tr>
+            
+            
+
+            <tr><td> Reset  </td><td><input  type="reset" value="Reset Personal Info"> </td><td></td>   </tr>
+            <tr><td>Save changing  </td><td><input  type="submit" value="Save Personal Info"> </td><td></td>   </tr>
+           
+        </tbody>
+
+
+    </table>
+</form>   
+
+<br>
+<form action="<$action_edit_email>" method="POST">
+            <input type="hidden" name="id_user" value="<$id_user>">
+
+    <table>
+        <tbody>
+
+            <tr><td colspan="3">Edit Email </td></tr>
+            <tr><td >Current first name <$email>  </td></tr>
+            <tr><td>Edit email</td><td><input type="email" name="email" placeholder="Enter email"> </td><td><$email_m> </td>   </tr>
+            <tr><td>Save email  </td><td><input  type="submit" value="Save email"> </td><td></td>   </tr> 
+
+        </tbody>
+    </table>
+</form> 
+<br>
+
+<form action="<$action_edit_password>" method="POST">
+            <input type="hidden" name="id_user" value="<$id_user>">
+
+    <table>
+        <tbody>
+
+            <tr><td colspan="3">Change Password</td></tr>
+            
+            <tr><td>Enter current password</td><td><input type="password" name="old_password" placeholder="Enter old password"> </td><td><$old_password_m> </td>   </tr>
+            <tr><td>Enter new password </td><td><input type="password" name="new_password" placeholder="Enter new password"> </td><td><$new_password_m> </td>   </tr>
+            <tr><td>Repead new password </td><td><input type="password" name="rnew_password" placeholder="Repead new password"> </td><td><$rnew_password_m> </td>   </tr>
+            <tr><td>Save new password  </td><td><input  type="submit" value="Save"> </td><td></td>   </tr>
+           
+        </tbody>
+
+
+    </table>
+</form>   
+

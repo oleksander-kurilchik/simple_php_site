@@ -28,11 +28,11 @@ class BaseView   {
             
             
        }
-      
-             
-     
-       
-       
+    }
+    
+    public function deleteAllMarks()
+    {
+         $this->page =  preg_replace('|<\$([[:alnum:]_]){2,}>|im', "",  $this->page);
         
     }
     

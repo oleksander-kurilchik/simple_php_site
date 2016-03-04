@@ -32,16 +32,17 @@ if (!empty($_POST)) {
 
     if (strlen($_POST["header"]) < 10) {
         $view->headermessage = " header so small";
-        $flag = false;
-    } else {
-        $view->header = $_POST["header"];
-    }
+      $flag = false;
+    } 
+    
     if (strlen($_POST["material"]) < 100) {
         $view->materialmessage = " material so small";
-        $flag = false;
-    } else {
-        $view->material = $_POST["material"];
-    }
+        $flag = false; 
+    } 
+    
+    
+    $view->header = htmlspecialchars($_POST["header"], ENT_QUOTES);
+    $view->material = htmlspecialchars($_POST["material"], ENT_QUOTES);;
     if ($flag == true) {
 
 
