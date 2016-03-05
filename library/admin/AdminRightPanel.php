@@ -43,7 +43,7 @@ class AdminRightPanel implements IRightPanelDiv
     }
     public function setActiveSection($act_sect)
      {
-        $this->activesection = $act_sect;
+        $this->activesection = (int)$act_sect;
         
         
     }

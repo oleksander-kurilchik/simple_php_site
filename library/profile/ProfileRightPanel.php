@@ -17,9 +17,10 @@ require_once '../library/GlobalDiv.php';
  */
 class ProfileRightPanel implements IRightPanelDiv {
     
-     private $pattern = "../forms/profilerightpanel.html";
+     private $pattern ;
     public function __construct() 
     {
+         $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/profilerightpanel.html";
         
         
     }

@@ -15,6 +15,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminUsersListView.php';
 
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserListView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListView.php';
+
+
+
 $session = new SessionControler();
 
 if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
@@ -57,7 +61,7 @@ elseif ($_GET["section"] =="publications")
 }
 elseif ($_GET["section"] =="comments")
 {
-    $mainplace = new AdminCommentsListView();
+    $mainplace = new CommentListView(null,1);
 }
  else 
 {

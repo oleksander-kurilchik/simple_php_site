@@ -10,48 +10,16 @@ class PublicationListView implements IMainPlaceDiv {
     private $query;
     private $count_page;
     private $current_url;
+    private $count_item_on_page;
     
     public function __construct($page,$current_url_pattern=null,$query=null)
     {
         $this->page = $page;
         $this->query = $query;
         $this->current_url = $current_url_pattern;
-
+        $this->count_item_on_page = 6;
         
-    }
-    private function getDataFromDB($page)
-    {
-          mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
-        mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
-        $result = mysql_query("select  publications.id_public ,publications.date_of_creation,publications.body_of_pub,publications.header_of_pub, table_users.login   from publications,table_users"
-                . " where publications.id_user=table_users.id_user ".$this->query." order by publications.id_public    limit ".((string)($page-1)*6) .", ". ((string)6). " ");
-        
-        
-        print_r(mysql_error());
-        
-      $arr_get=array();
-        while ($row = mysql_fetch_array($result))
-                { $arr_get[]=$row; }
-           
-      $result = mysql_query("select  count(*)    from publications,table_users"
-                . " where publications.id_user=table_users.id_user ".$this->query."   ");
-        
-             $row = mysql_fetch_array($result);
-              $this->count_page = ceil($row["count(*)"]/6);
-             // print_r( $this->count_page );
-                       
-                
-                
- mysql_close();
-                return $arr_get;
-        
-    }
-
-        public function buildForm()
-         {
-           $list_pub="";
+        $list_pub="";
            $arr_list = $this->getDataFromDB($this->page);
           // print_r($arr_list);
            foreach ($arr_list as $key => $value )
@@ -88,10 +56,51 @@ class PublicationListView implements IMainPlaceDiv {
                    
            $navigator = new PublicationNavigator($current,$prev,$next);
            
-           $page = new BaseView(array("publication_list"=>$list_pub,"navigator"=>$navigator),$_SERVER['DOCUMENT_ROOT']."/forms/publicationlistview.html");
+           $this->page = new BaseView(array("publication_list"=>$list_pub,"navigator"=>$navigator),$_SERVER['DOCUMENT_ROOT']."/forms/publicationlistview.html");
            
            
-           return  $page;
+           
+        
+      
+        
+        
+        
+
+        
+    }
+    private function getDataFromDB($page)
+    {
+         $link= mysql_connect("localhost", "root", "1234");
+        mysql_select_db("my_first_site",$link);
+       
+        $result = mysql_query("select  publications.id_public ,publications.date_of_creation,publications.body_of_pub,publications.header_of_pub, table_users.login   from publications,table_users"
+                . " where publications.id_user=table_users.id_user ".$this->query.
+                " order by publications.id_public    limit ".((string)($page-1)*$this->count_item_on_page) .", ". ((string)$this->count_item_on_page). " ",$link);
+        
+        
+        print_r(mysql_error($link));
+        
+      $arr_get=array();
+        while ($row = mysql_fetch_array($result))
+                { $arr_get[]=$row; }
+           
+      $result = mysql_query("select  count(*)    from publications,table_users"
+                . " where publications.id_user=table_users.id_user ".$this->query."   ");
+        
+             $row = mysql_fetch_array($result);
+              $this->count_page = ceil($row["count(*)"]/$this->count_item_on_page);
+             // print_r( $this->count_page );
+                       
+                
+                
+ mysql_close($link);
+                return $arr_get;
+        
+    }
+
+        public function buildForm()
+         {
+          return  $this->page;
         
     }
 

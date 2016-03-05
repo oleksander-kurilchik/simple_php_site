@@ -1,6 +1,6 @@
 <?php
-require_once '/var/www/server3/library/CommentItemCreator.php';
-require_once '/var/www/server3/library/BaseView.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/library/CommentItemCreator.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/library/BaseView.php';
 
 
 class CommentListView {
@@ -19,15 +19,18 @@ if($query==null)
           $commentitemlist = '';
           $queryDB = "select comments_of_pub.datepub,comments_of_pub.id_comment, comments_of_pub.body_of_comment, comments_of_pub.id_publications,table_users.login   ,table_users.id_user  
 from table_users,comments_of_pub
-where comments_of_pub.id_user=table_users.id_user  ".$query;
+where comments_of_pub.id_user=table_users.id_user  {$query}";
           
-         
+       
+
+
         
-       mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
-         $result = mysql_query($queryDB);
+      $link =  mysql_connect("localhost", "root", "1234");
+        mysql_select_db("my_first_site",$link);
+         $result = mysql_query($queryDB,$link);
         //$row=mysql_fetch_array($result);
-        echo mysql_error();
+        
+        echo mysql_error($link);
         $commentcreator = new CommentItemCreator($typeofitem);
         
          while ($row_c = mysql_fetch_array($result))
@@ -53,7 +56,7 @@ where comments_of_pub.id_user=table_users.id_user  ".$query;
         
       
 
-
+         mysql_close($link);
         
     }
     public function __toString()

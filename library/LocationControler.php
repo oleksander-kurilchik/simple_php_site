@@ -62,9 +62,20 @@ class LocationControler {
     
     
     
+    
      public static function getActionCommentPage()
     {
         return self::getMainPage()."/comments/";          
     }
     //put your code here
+    
+    
+    
+    
+     public static function getCreatingPublicationPage()
+    {
+        return self::getMainPage()."/publication/createpublication.php";          
+    }
+    
+    
 }

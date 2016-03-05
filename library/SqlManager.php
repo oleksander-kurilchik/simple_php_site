@@ -5,7 +5,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserInfoView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListViewExt.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationsCreatorView.php';
 
 
@@ -28,6 +28,8 @@ $current = array ("address"=>"","text"=>"current page 3");
 $prev = array ("address"=>"http://prev","text"=>" Prev Page 2");
 $next = array ("address"=>"http://next","text"=>" Next Page 4");
 */
+
+/*
 ;$arr = $_POST;
 $arr["action"]="http://server3/library/SqlManager.php";;
 $arr["id_user"]=$_SESSION["id"];
@@ -39,6 +41,12 @@ if( $pppp->isValid()==true)
 echo " pib added" ;   
       return;      
 }
+ * 
+  */
+ 
+
+$pppp = new CommentListViewExt ($_GET["page"],1,"http://server3/library/SqlManager.php?<\$page_number>",' and table_users.login="user11" ');
+
 
    echo $pppp->buildForm();
    
