@@ -42,6 +42,8 @@ class CommentViewItem
         
              
         $this->data_comment["action_comment"]=$data_view_action;
+         $this->data_comment["address_publications"]=  LocationControler::getPublicationPage()."?publication=".$this->data_comment["id_publications"]."";
+        
         
         $this->data_view = new BaseView($this->data_comment,$this->pattern);
         

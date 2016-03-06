@@ -1,7 +1,7 @@
 <?php
-require_once '../interfaces/IRightPanelDiv.php';
-require_once '../library/GlobalDiv.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/interfaces/IRightPanelDiv.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
 
 
 /*
@@ -18,25 +18,26 @@ require_once '../library/GlobalDiv.php';
 class ProfileRightPanel implements IRightPanelDiv {
     
      private $pattern ;
-    public function __construct() 
+     private $page;
+    public function __construct($selected=1 ) 
     {
          $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/profilerightpanel.html";
-        
-        
+        $arr_arg["profileinfo"]=  LocationControler::getProfillePage()."?mode=viewprofile" ;
+        $arr_arg["publications"]=  LocationControler::getProfillePage()."?mode=publications" ;
+        $arr_arg["comments"]=  LocationControler::getProfillePage()."?mode=comments" ;
+        $arr_arg["editprofile"]=  LocationControler::getProfillePage()."?mode=editprofile" ;
+        $arr_arg["mainpage"]=  LocationControler::getMainPage();
+        $arr_arg["exit"]=  LocationControler::getExitPage();
+        $arr_arg["selected_{$selected}"]= 'class="selected"';
+        $this->page = new BaseView($arr_arg,$this->pattern);
+        $this->page->deleteAllMarks();
     }
     
     
     public function buildForm() 
     {
-          $page =  file_get_contents($this->pattern);
-          $page =  preg_replace('|{\$profileinfo}|im',  $_SERVER['PHP_SELF']."?mode=viewprofile ",  $page);
-         
-          $page =  preg_replace('|{\$mypublications}|im',  $_SERVER['PHP_SELF']."?mode=publications" ,  $page);
-          $page =  preg_replace('|{\$editprifile}|im', $_SERVER['PHP_SELF']."?mode=editprofile",  $page);
-          $page =  preg_replace('|{\$passwordmessage}|im', NULL,  $page);
-         
-          return $page;
-          return $page;
+          
+          return $this->page;
         
     }
 }

@@ -26,8 +26,10 @@ where publications.id_public ={$_POST["id_publication"]} LIMIT 1; ");
            
        }
        
+       $text_comment = htmlspecialchars($_POST['text_comment'], ENT_QUOTES);
+       
        $result = mysql_query("insert into comments_of_pub (id_user,id_publications,datepub,body_of_comment)
-           values({$_SESSION['id']},{$_POST['id_publication']},NOW(),\"{$_POST['text_comment']} \");");
+           values({$_SESSION['id']},{$_POST['id_publication']},NOW(),\"{$text_comment} \");");
               echo "<br>";   
            echo mysql_error()."<br>"; 
            

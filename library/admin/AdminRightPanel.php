@@ -16,37 +16,33 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
  */
 class AdminRightPanel implements IRightPanelDiv
 {
-    private $activesection;
-    private $pattern;
-    public function __construct()
+     private $pattern ;
+     private $page;
+    public function __construct($selected=0 ) 
     {
-        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/admin/adminrightpanel.html";
+         $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/admin/adminrightpanel.html";
+        $arr_arg["users"]=  LocationControler::getAdminPage()."?mode=userlisl" ;
+        $arr_arg["publications"]=  LocationControler::getAdminPage()."?mode=publications" ;
+        $arr_arg["comments"]=  LocationControler::getAdminPage()."?mode=comments" ;
+        $arr_arg["mainpage"]=  LocationControler::getMainPage();
+       
+        $arr_arg["exit"]=  LocationControler::getExitPage();
+       
+        $arr_arg["selected_{$selected}"]= 'class="selected"';
         
+        $this->page = new BaseView($arr_arg,$this->pattern);
+        $this->page->deleteAllMarks();
     }
     
     
     
     public function buildForm()
     {
-           $page =  file_get_contents($this->pattern);
-          $page =  preg_replace('|{\$userlist}|im', LocationControler::getAdminPage()."?section=userlisl" ,  $page);
-         
-          $page =  preg_replace('|{\$publist}|im', LocationControler::getAdminPage()."?section=publications",  $page);         
-          $page =  preg_replace('|{\$commentlist}|im',LocationControler::getAdminPage()."?section=comments",  $page);
-         $page =  preg_replace('|{\$exitaddr}|im',LocationControler::getExitPage(),  $page);
-         
-          return $page;
-        
-        
-        
+          
+          return $this->page;
         
     }
-    public function setActiveSection($act_sect)
-     {
-        $this->activesection = (int)$act_sect;
-        
-        
-    }
+    
 
 //put your code here
 }

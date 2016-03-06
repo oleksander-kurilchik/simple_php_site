@@ -28,13 +28,22 @@ class LocationControler {
     }
      public static function getProfillePage()
     {
-        return self::getMainPage()."/profile";          
+        return self::getMainPage()."/profile/index.php";          
     }
+    public static function getProfilleFolder()
+    {
+        return self::getMainPage()."/profile/";          
+    }
+    
      public static function getPostPage()
     {
         return self::getMainPage()."/post.php";          
     }
      public static function getAdminPage()
+    {
+        return self::getMainPage()."/admin/index.php";          
+    }
+    public static function getAdminFolder()
     {
         return self::getMainPage()."/admin";          
     }
@@ -54,7 +63,14 @@ class LocationControler {
     {
         return self::getMainPage()."/viewpublic/index.php";          
     }
-    
+     public static function getUserPublicationPage()
+    {
+        return self::getAdminFolder()."/user/userpublications.php";          
+    }
+     public static function getUserCommentsPage()
+    {
+        return self::getAdminFolder()."/user/usercomments.php";          
+    }
     
     
     

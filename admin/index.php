@@ -16,7 +16,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminUsersListView.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListView.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationListView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListViewExt.php';
 
 
 $session = new SessionControler();
@@ -26,16 +27,15 @@ if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
     header("Location: ".LocationControler::getLoginPage());
     return;
 }
-if((isset( $_GET["section"]))==false)
+if((isset( $_GET["mode"]))==false)
 {
-     header("Location: ".LocationControler::getAdminPage()."/index.php?section=userlisl"); 
+     header("Location: ".LocationControler::getAdminPage()."/index.php?mode=userlisl"); 
    
     return;
 }
 
 
-$rightp;
-$rightp = new AdminRightPanel();
+$rightp_selected=1;
 $mainplace;
  if (!isset($_GET["page"])) {
         $page = 1;
@@ -49,27 +49,33 @@ $mainplace;
 
 
 
-if($_GET["section"] =="userlisl")
+if($_GET["mode"] =="users")
 {
-    $mainplace = new UserListView($page, LocationControler::getMainPage(). "/admin/index.php?section=userlisl&<\$page_number>");
+    $rightp_selected=1;
+    $mainplace = new UserListView($page, LocationControler::getMainPage(). "/admin/index.php?mode=userlisl&<\$page_number>");
 }
-elseif ($_GET["section"] =="publications")
+elseif ($_GET["mode"] =="publications")
 {
-    $mainplace  =new AdminPublicationListView();
+    $rightp_selected=2;
+    $mainplace  =  new PublicationListView ($page, LocationControler::getAdminPage()."?mode=publications&<\$page_number>");
     
 
 }
-elseif ($_GET["section"] =="comments")
+elseif ($_GET["mode"] =="comments")
 {
-    $mainplace = new CommentListView(null,1);
+    $rightp_selected=3;
+    $mainplace = new CommentListViewExt ($page,1,LocationControler::getAdminPage()."?mode=comments&<\$page_number>"," order by comments_of_pub.id_comment ");
 }
  else 
 {
-        header("Location: ".LocationControler::getAdminPage()."?section=userlisl"); 
+        header("Location: ".LocationControler::getAdminPage()."?mode=users"); 
    
     return;
 
 }
+
+
+$rightp = new AdminRightPanel($rightp_selected);
 
 $globaldiv = new GlobalDiv(/*$head,*/ $rightp, $mainplace /*, $foot*/);
 echo $globaldiv->buildForm();

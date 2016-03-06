@@ -7,7 +7,21 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/GlobalDiv.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminCommentsListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminPublicationListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminRightPanel.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserInfoView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListViewExt.php';
+
+
+$rightp_selected=1;
+$mainplace;
+$page;
+ if (!isset($_GET["page"])) {
+        $page = 1;
+    } 
+ else {
+        $page = (int) $_GET["page"];
+        if ($page <= 0) {
+            $page = 1;
+        }
+    }
 
 
 $session = new SessionControler();
@@ -18,7 +32,7 @@ if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
     return;
 }
 
-if((isset( $_GET["login"]))==false)
+if((isset($_GET["user"]))==false)
 {
      header("Location: ".LocationControler::getAdminPage()."?mode=userlisl"); 
    
@@ -28,9 +42,9 @@ if((isset( $_GET["login"]))==false)
 
 
 
-$rightp = new AdminRightPanel(1);
+$rightp = new AdminRightPanel(2);
 $mainplace;
-$mainplace = new UserInfoView($_GET["login"]);
+$mainplace = new CommentListViewExt($page,1,LocationControler::getUserCommentsPage()."?user={$_GET["user"]}&<\$page_number>","and table_users.login=\"{$_GET["user"]}\"");
 
 $globaldiv = new GlobalDiv(/*$head,*/ $rightp, $mainplace /*, $foot*/);
 echo $globaldiv->buildForm();
@@ -41,6 +55,10 @@ echo $globaldiv->buildForm();
 
 
 ?>
+
+
+
+
 
 
 
