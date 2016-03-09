@@ -36,7 +36,7 @@ class CommentViewItem
         $data_view_action="";
         if($this->is_action ==true)
         {
-            $data_view_action  = new BaseView(array("action_comment"=>LocationControler::getActionCommentPage()."deletecomment.php","id_comment"=>$this->data_comment["id_comment"]),$this->pattern_action);
+            $data_view_action  = new BaseView(array("action_comment"=>LocationControler::getPublicationFolder()."deletecomment.php","id_comment"=>$this->data_comment["id_comment"]),$this->pattern_action);
                         
         }
         

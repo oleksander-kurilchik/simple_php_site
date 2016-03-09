@@ -1,7 +1,7 @@
 <?php
 
-require_once '/var/www/server3/library/BaseView.php';
-require_once '/var/www/server3/library/LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT']."/library/BaseView.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/library/LocationControler.php";
 class RatingActionView
 {
 private $pattern;
@@ -18,20 +18,20 @@ switch($action_mode)
 case 1:
 {
 $this->view = new BaseView(array("id_publication" => $id_pub,
- "action" => LocationControler::getMainPage()."/viewpublic/ratingaction.php"), $this->pattern[1]);
+ "action" => LocationControler::getPublicationFolder()."ratingaction.php"), $this->pattern[1]);
 }
 break;
 case 2:
 {
 $this->view = new BaseView(array("id_publication" => $id_pub,
- "action" => LocationControler::getMainPage()."/viewpublic/ratingaction.php"), $this->pattern[2]);
+ "action" => LocationControler::getPublicationFolder()."ratingaction.php"), $this->pattern[2]);
 
 }
 break;
 default :
 {
     $this->view = new BaseView(array("id_publication" => $id_pub,
- "action" => LocationControler::getMainPage()."/viewpublic/ratingaction.php"), $this->pattern[0]);
+ "action" => LocationControler::getPublicationFolder()."ratingaction.php"), $this->pattern[0]);
     
 }
 break;

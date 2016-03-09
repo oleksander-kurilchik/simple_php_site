@@ -43,7 +43,7 @@ class UserListView implements IMainPlaceDiv{
         $result = mysql_query($this->query);
         $useritemsresult = '';
         while ($row = mysql_fetch_array($result)) {
-            $row["useraddr"] = LocationControler::getAdminUsersPage() . "?login={$row["login"]}";
+            $row["useraddr"] = LocationControler::getUserPage()."?mode=userinfo&login={$row["login"]}";
             $useritem = new BaseView($row, $this->patternitem);
             $useritemsresult = $useritemsresult . $useritem;
          

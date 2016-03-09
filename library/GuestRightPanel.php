@@ -16,11 +16,11 @@ require_once '/var/www/server3/library/LocationControler.php';
  * @author profesor
  */
 class GuestRightPanel implements IRightPanelDiv{
-    private $pattern = "./forms/loginbase.html";
+    private $pattern;
     public function __construct() 
     {
         
-        
+        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/loginbase.html";
     }
     
     

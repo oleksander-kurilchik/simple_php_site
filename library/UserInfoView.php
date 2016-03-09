@@ -21,7 +21,7 @@ class UserInfoView implements IMainPlaceDiv
     protected  $pattern;
     private $login;
     private $page;
-    public function __construct ($login)
+    public function __construct ($login,$arr_arg = array())
     {
                 $this->initPattern();
                 
@@ -40,9 +40,12 @@ where table_users.login = \"{$login}\" LIMIT 1; ");
           $result = mysql_query("select count(*)from  comments_of_pub where id_user={$id_user};");
            $row_c_c = mysql_fetch_array($result);
              $row["countcomm"] = $row_c_c["count(*)"];
+             
+              $row = $row + $arr_arg;
+             
            /// potim pererobit
-             $row["deleteaction"] =  LocationControler::getAdminPage()."/user/userdelete.php?id_user={$id_user}";
-             $row["editaction"] = LocationControler::getAdminPage()."/user/useredit.php?id_user={$id_user}";
+             $row["deleteaction"] =  LocationControler::getAdminFolder()."/user/userdelete.php?id_user={$id_user}";
+             $row["editaction"] = LocationControler::getAdminFolder()."/user/useredit.php?id_user={$id_user}";
           
             
  $this->page = new BaseView($row,$this->pattern)    ;  

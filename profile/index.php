@@ -45,7 +45,8 @@ $mainplace;
 
 
 if ($_GET["mode"] == "viewprofile") {
-    $mainplace = new UserInfoViewLite($_SESSION['login']);
+    $arg= array("listpub"=>  LocationControler::getProfillePage()."?mode=publications" ,"listcomm"=>LocationControler::getProfillePage()."?mode=comments");    
+    $mainplace = new UserInfoViewLite($_SESSION['login'],$arg);
     $rightp_select =1;
 }
 elseif ($_GET["mode"] == "publications") 

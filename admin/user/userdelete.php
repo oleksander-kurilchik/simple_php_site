@@ -1,5 +1,5 @@
 <?php
-
+/*
 require_once '/var/www/server3/library/LocationControler.php';
 require_once '/var/www/server3/library/SessionControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminRightPanel.php';
@@ -18,7 +18,7 @@ if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
     return;
 }
 
-if((isset( $_GET["login"]))==false)
+if((isset( $_GET["id_user"]))==false)
 {
      header("Location: ".LocationControler::getAdminPage()."?section=userlisl"); 
    
@@ -33,11 +33,11 @@ $mainplace;
 $mainplace = new UserDeleteView();
 $mainplace->login = $_GET["login"];
 
-$globaldiv = new GlobalDiv(/*$head,*/ $rightp, $mainplace /*, $foot*/);
+$globaldiv = new GlobalDiv($rightp, $mainplace );
 echo $globaldiv->buildForm();
 
 
-
+*/
 
 
 

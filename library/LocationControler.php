@@ -61,8 +61,13 @@ class LocationControler {
     }
       public static function getPublicationPage()
     {
-        return self::getMainPage()."/viewpublic/index.php";          
+        return self::getMainPage()."/publication/index.php";          
     }
+     public static function getPublicationFolder()
+     {
+          return self::getMainPage()."/publication/"; 
+     }
+    
      public static function getUserPublicationPage()
     {
         return self::getAdminFolder()."/user/userpublications.php";          
@@ -74,8 +79,18 @@ class LocationControler {
     
     
     
-    
-    
+     public static function getUserFolder()
+    {
+        return self::getAdminFolder()."/user/";          
+    }
+     public static function getUserPage()
+    {
+        return self::getAdminFolder()."/user/index.php";          
+    }
+      public static function getDeletePublicationPage()
+    {
+        return self::getPublicationFolder()."deletepublication.php";  
+    }
     
     
     

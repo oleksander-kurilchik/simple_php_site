@@ -1,5 +1,5 @@
 <?php
-
+/*
 require_once '/var/www/server3/library/LocationControler.php';
 require_once '/var/www/server3/library/SessionControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminRightPanel.php';
@@ -33,8 +33,9 @@ $mainplace;
 $mainplace = new UserEditView();
 $mainplace->login = $_GET["login"];
 
-$globaldiv = new GlobalDiv(/*$head,*/ $rightp, $mainplace /*, $foot*/);
+$globaldiv = new GlobalDiv( $rightp, $mainplace );
 echo $globaldiv->buildForm();
+*/
 
 
 

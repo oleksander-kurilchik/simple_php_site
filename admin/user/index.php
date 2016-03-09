@@ -18,8 +18,9 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListViewExt.php';
-
-
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserInfoRightPanel.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserInfoView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserProfileEditViewExt.php';
 $session = new SessionControler();
 
 if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
@@ -27,7 +28,9 @@ if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
     header("Location: ".LocationControler::getLoginPage());
     return;
 }
-if((isset( $_GET["mode"]))==false)
+
+
+if(isset( $_GET["login"])==false||isset( $_GET["mode"])==false)
 {
      header("Location: ".LocationControler::getAdminPage()."/index.php?mode=users"); 
    
@@ -47,35 +50,44 @@ $mainplace;
         }
     }
 
+    $login= $_GET["login"];
+    
+$login_query = "&login={$login}";
 
-
-if($_GET["mode"] =="users")
+if($_GET["mode"] =="userinfo")
 {
+   
+     $arg= array("listpub"=>  LocationControler::getUserPage()."?mode=publications&login={$login}" ,
+         "listcomm"=>LocationControler::getUserPage()."?mode=comments&login={$login}");    
+    
     $rightp_selected=1;
-    $mainplace = new UserListView($page, LocationControler::getMainPage(). "/admin/index.php?mode=users&<\$page_number>");
+$mainplace = new UserInfoView($_GET["login"],$arg);
 }
 elseif ($_GET["mode"] =="publications")
 {
     $rightp_selected=2;
-    $mainplace  =  new PublicationListView ($page, LocationControler::getAdminPage()."?mode=publications&<\$page_number>");
-    
-
+    $mainplace  =  new PublicationListView ($page, LocationControler::getUserPage()."?mode=publications&<\$page_number>".$login_query," and table_users.login=\"{$login}\" ");
 }
 elseif ($_GET["mode"] =="comments")
 {
     $rightp_selected=3;
-    $mainplace = new CommentListViewExt ($page,1,LocationControler::getAdminPage()."?mode=comments&<\$page_number>"," order by comments_of_pub.id_comment ");
+    $mainplace = new CommentListViewExt ($page,1,LocationControler::getUserPage()."?mode=comments&<\$page_number>".$login_query," and table_users.login=\"{$login}\"  order by comments_of_pub.id_comment ");
+}
+elseif ($_GET["mode"] =="edituser")
+{
+    $rightp_selected=4;
+    $mainplace = new UserProfileEditViewExt($login);
 }
  else 
 {
-        header("Location: ".LocationControler::getAdminPage()."?mode=users"); 
-   
+       
+     header("Location: ".LocationControler::getAdminPage()."/index.php?mode=users");    
     return;
 
 }
 
 
-$rightp = new AdminRightPanel($rightp_selected);
+$rightp = new UserInfoRightPanel ($_GET["login"], $rightp_selected);
 
 $globaldiv = new GlobalDiv(/*$head,*/ $rightp, $mainplace /*, $foot*/);
 echo $globaldiv->buildForm();

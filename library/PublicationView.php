@@ -56,12 +56,11 @@ where publications.id_user =table_users.id_user and publications.id_public ={$id
         $editform = null;
         $rating_action = 0;
         if (SessionControler::is_Session_static() == true) {
-            $commentform = new BaseView(array("action" => LocationControler::getMainPage()
-                . "/viewpublic/addcomments.php", "id_publication" => $id_publication)
+            $commentform = new BaseView(array("action" => LocationControler::getPublicationFolder(). "/addcomment.php", "id_publication" => $id_publication)
                     , $this->pattern_comment_form);
             if (SessionControler::getCurrentLogin() == $this->owner_publication || SessionControler::isAdmin_current() == true) {
-                $editform = new BaseView(array("action_delete" => LocationControler::getMainPage() . "/viewpublic/deletepublication.php"
-                    , "action_edit" => LocationControler::getMainPage() . "/viewpublic/editpublication.php"
+                $editform = new BaseView(array("action_delete" => LocationControler::getPublicationFolder() . "deletepublication.php"
+                    , "action_edit" => LocationControler::getPublicationFolder(). "editpublication.php"
                     , "id_publication" =>$id_publication)
                         , $this->pattern_action_publicaton);
             }
@@ -121,52 +120,7 @@ where publications.id_user =table_users.id_user and publications.id_public ={$id
 
     public function buildForm() {
 
-        /*
-          $commentform = null;
-          if ($this->is_commentable == true) {
-          $commentform = new BaseView(array("action" => LocationControler::getMainPage()
-          . "/viewpublic/addcomments.php", "id_publication" => $_GET["publication"])
-          , $this->pattern_comment_form);
-          }
-         
-        $editform = null;
-        if ($this->is_editable == true) {
-            $editform = new BaseView(array("action_delete" => LocationControler::getMainPage() . "/viewpublic/deletepublication.php"
-                , "action_edit" => LocationControler::getMainPage() . "/viewpublic/editpublication.php"
-                , "id_publication" => $_GET["publication"])
-                    , $this->pattern_action_publicaton);
-        }
-
-
-        print_r($this->arr_comments_list);
-        $commentsview = file_get_contents($this->pattern_comment_view);
-        $commentitemlist = '';
-        for ($i = 0; $i < count($this->arr_comments_list); $i++) {
-            $commentitem = new CommentViewItem($this->arr_comments_list[$i], $this->arr_comments_list[$i]["editable"]);
-            $commentitemlist = $commentitemlist . $commentitem;
-        }
-
-
-
-        $ratingview = new RatingActionView($this->rating_action, $_GET["publication"]);
-        $rating_result = new BaseView(array("rating_result" => $this->rating ? $this->rating : "За матеріал ніхто не голосував"), $_SERVER['DOCUMENT_ROOT'] . "/forms/rating/ratingresult.html");
-
-
-
-
-        $commentsview = preg_replace('|{\$commentsform}|im', $commentform, $commentsview);
-        $commentsview = preg_replace('|{\$commentslist}|im', $commentitemlist, $commentsview);
-
-        // $page =  preg_replace('|{\$comments}|im',$commentsview,  $page);
-
-
-        $this->arr_data["rating_result"] = $rating_result;
-        $this->arr_data["rating_action"] = $ratingview;
-        $this->arr_data["editable"] = $editform;
-        $this->arr_data["comments"] = $commentsview;
-        $page = new BaseView($this->arr_data, $this->pattern);
-
-*/
+       
 
         return $this->page;
     }

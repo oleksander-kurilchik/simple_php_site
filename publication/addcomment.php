@@ -25,9 +25,7 @@ where publications.id_public ={$_POST["id_publication"]} LIMIT 1; ");
             return;
            
        }
-       
-       $text_comment = htmlspecialchars($_POST['text_comment'], ENT_QUOTES);
-       
+       $text_comment = cutStrExt($_POST['text_comment']);
        $result = mysql_query("insert into comments_of_pub (id_user,id_publications,datepub,body_of_comment)
            values({$_SESSION['id']},{$_POST['id_publication']},NOW(),\"{$text_comment} \");");
               echo "<br>";   
@@ -47,6 +45,26 @@ where publications.id_public ={$_POST["id_publication"]} LIMIT 1; ");
 //print_r($_POST)."<br>";
 
 //print_r($_SERVER['HTTP_REFERER']);
+   
+   
+   
+function cutStrExt($param) 
+{
+    if(mb_strlen($param)<147)
+        return $param;
+    $pos=  mb_strpos($param," ",147);
+    if($pos<160&&$pos!==false)
+    {
+     $rest = mb_substr($param, 0, $pos)  ;
+     return $rest;
+    }
+    
+     $rest = mb_substr($param, 0, 157)  ;
+     $rest=$rest.".....";
+     return $rest;
+    
+    
+}
 
 
 ?>
