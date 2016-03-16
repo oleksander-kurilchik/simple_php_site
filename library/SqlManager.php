@@ -1,56 +1,69 @@
 <?php
-session_start();
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
+class SqlManager {
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserInfoView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListViewExt.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationsCreatorView.php';
+    private $db;
+    private $query;
+    private $result;
 
+    public function __construct() {
+        $this->db = new mysqli('127.0.0.1', 'root', '1234', 'my_first_site');
+        if ($this->db->connect_error) {
+            echo '<h1>Помилка зєднання з базою даних<h1>';
+        }
+    }
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+    public function selectQuery($stringQuery) {
+        $this->result = $this->db->query($stringQuery);
+        if ($this->result != false)
+            return true;
+        return false;
+    }
 
-/**
- * Description of SqlManager
- *
- * @author profesor
- * 
- * 
- */
-/*
+    public function getRow($number)
+    {
+        
+            if ($this->result instanceof mysqli_result) 
+            {
+                if ($this->result->num_rows > $number)
+                {
+                    $this->result->data_seek($number);
 
-$current = array ("address"=>"","text"=>"current page 3");
-$prev = array ("address"=>"http://prev","text"=>" Prev Page 2");
-$next = array ("address"=>"http://next","text"=>" Next Page 4");
-*/
+                    return $this->result->fetch_array();
+                }
+            }
+        return false;
+    }
 
-/*
-;$arr = $_POST;
-$arr["action"]="http://server3/library/SqlManager.php";;
-$arr["id_user"]=$_SESSION["id"];
-$pppp = new PublicationsCreatorView ($arr);
-  /// $pppp = new CommentListView(0);
-if( $pppp->isValid()==true)
-{
-    $pppp->createPublication(new PublicationCreator());
-echo " pib added" ;   
-      return;      
+    public function getAllQueryArray() {
+
+        if ($this->result instanceof mysqli_result) {
+            if ($this->result->num_rows > 0) {
+                $this->result->data_seek(0);
+            }
+            while ($row_c = $this->result->fetch_array())
+            {
+                $arr_ret[] = $row_c;
+            }
+
+            return $arr_ret;
+        }
+        return false;
+    }
+
+    public function getNumRow() {
+        if ($this->result instanceof mysqli_result) {
+            return $this->result->num_rows;
+        }
+        return false;
+    }
+
+    public function __destruct() {
+        $this->db->close();
+        unset($this->db);
+        unset($this->result);
+    }
+
 }
- * 
-  */
- 
 
-$pppp = new CommentListViewExt ($_GET["page"],1,"http://server3/library/SqlManager.php?<\$page_number>",' and table_users.login="user11" ');
-
-
-   echo $pppp->buildForm();
-   
-   
-   
-//$db = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-
+?>

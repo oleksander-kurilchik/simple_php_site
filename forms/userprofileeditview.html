@@ -4,35 +4,36 @@
         <tbody>
 
             <tr><td colspan="3">Edit Personal info of user "<$login>" </td></tr>
+            <$pinfoinfoedited>
             <tr><td >Current first name <$first_name>  </td></tr>
-            <tr><td>Edit first name </td><td><input type="text" name="first_name" placeholder="Enter first name"> </td><td><$first_name_m> </td>   </tr>
+            <tr><td>Edit first name </td><td><input type="text" name="first_name" value="<$first_name_v>" placeholder="Enter first name"> </td><td><$first_name_m> </td>   </tr>
             <tr><td >Current seconf name <$second_name>  </td></tr>
-            <tr><td>Edit second name </td><td><input type="text" name="second_name" placeholder="Enter second name"> </td><td><$second_name_m> </td>   </tr>
+            <tr><td>Edit second name </td><td><input type="text" name="second_name" value="<$second_name_v>" placeholder="Enter second name"> </td><td><$second_name_m> </td>   </tr>
             <tr><td >Current last name <$last_name>  </td></tr>
-            <tr><td>Edit last name </td><td><input type="text" name="last_name" placeholder="Enter last name"> </td><td><$last_name_m> </td>   </tr>
+            <tr><td>Edit last name </td><td><input type="text" name="last_name" value="<$last_name_v>" placeholder="Enter last name"> </td><td><$last_name_m> </td>   </tr>
 
 
             <tr><td >Current address <$address>  </td></tr>
-            <tr><td>Edit address </td><td><input type="text" name="address" placeholder="Enter Address"> </td><td><$address_m> </td>   </tr>
+            <tr><td>Edit address </td><td><input type="text" name="address" value="<$address_v>" placeholder="Enter Address"> </td><td><$address_m> </td>   </tr>
 
             <tr><td >Current date of birth <$date_of_birth>  </td></tr>
-            <tr><td>Edit name date of birth  </td><td><input type="date" name="date_of_birth" > </td><td><$date_of_birth_m> </td>   </tr>
+            <tr><td>Edit name date of birth  </td><td><input type="date"  name="date_of_birth" value="<$address_v>" > </td><td><$date_of_birth_m> </td>   </tr>
 
 
             <tr><td >Current sex <$sex>  </td></tr>
             <tr><td>Edit sex  </td><td>
                     <select name="sex"   >
                                 <option disabled>Edit sex</option>
-                        <option value="no_edit" selected>No Edit Sex</option>
-                        <option value="male">Male</option >
-                        <option value="female"> Female</option>
+                        <option value="no_edit" >No Edit Sex</option>
+                        <option value="male" <$male_s>>Male</option >
+                        <option value="female" <$female_s>> Female</option>
                     </select>
                 </td><td><$sex_m> </td>   </tr>
             
             
 
             <tr><td> Reset  </td><td><input  type="reset" value="Reset Personal Info"> </td><td></td>   </tr>
-            <tr><td>Save changing  </td><td><input  type="submit" value="Save Personal Info"> </td><td></td>   </tr>
+            <tr><td>Save changing  </td><td><input  type="submit" name ="save_personal_info" value="Save Personal Info"> </td><td></td>   </tr>
            
         </tbody>
 
@@ -49,8 +50,8 @@
 
             <tr><td colspan="3">Edit Email </td></tr>
             <tr><td >Current first name <$email>  </td></tr>
-            <tr><td>Edit email</td><td><input type="email" name="email" placeholder="Enter email"> </td><td><$email_m> </td>   </tr>
-            <tr><td>Save email  </td><td><input  type="submit" value="Save email"> </td><td></td>   </tr> 
+            <tr><td>Edit email</td><td><input type="text" name="email" placeholder="Enter email"> </td><td><$email_m> </td>   </tr>
+            <tr><td>Save email  </td><td><input  type="submit" name ="save_email" value="Save email"> </td><td></td>   </tr> 
 
         </tbody>
     </table>
@@ -68,7 +69,7 @@
             <tr><td>Enter current password</td><td><input type="password" name="old_password" placeholder="Enter old password"> </td><td><$old_password_m> </td>   </tr>
             <tr><td>Enter new password </td><td><input type="password" name="new_password" placeholder="Enter new password"> </td><td><$new_password_m> </td>   </tr>
             <tr><td>Repead new password </td><td><input type="password" name="rnew_password" placeholder="Repead new password"> </td><td><$rnew_password_m> </td>   </tr>
-            <tr><td>Save new password  </td><td><input  type="submit" value="Save"> </td><td></td>   </tr>
+            <tr><td>Save new password  </td><td><input  type="submit"  name ="save_password" value="Save"> </td><td></td>   </tr>
            
         </tbody>
 

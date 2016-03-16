@@ -1,8 +1,10 @@
 <?php
 
-require_once './registrationview.php';
-require_once './sqlregvalidator.php';
-require_once './sqlusercreator.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/registrationview.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/sqlregvalidator.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/sqlusercreator.php';
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
