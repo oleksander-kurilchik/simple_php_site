@@ -44,8 +44,8 @@ where table_users.login = \"{$login}\" LIMIT 1; ");
               $row = $row + $arr_arg;
              
            /// potim pererobit
-             $row["deleteaction"] =  LocationControler::getAdminFolder()."/user/userdelete.php?id_user={$id_user}";
-             $row["editaction"] = LocationControler::getAdminFolder()."/user/useredit.php?id_user={$id_user}";
+           //  $row["deleteaction"] =  LocationControler::getAdminFolder()."/user/userdelete.php?id_user={$id_user}";
+             //$row["editaction"] = LocationControler::getAdminFolder()."/user/useredit.php?id_user={$id_user}";
           
             
  $this->page = new BaseView($row,$this->pattern)    ;  

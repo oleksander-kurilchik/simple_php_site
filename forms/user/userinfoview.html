@@ -27,17 +27,17 @@
         
         
         <tr><td>
+                
                 <form action="<$deleteaction>" method="GET"   >
                     <input type="hidden" name="id_user" value="<$id_user>">
-                           <input type="submit" value="Delete User">
+                           <input type="submit" value="Видалити користувача">
                 </form>
                 
             </td>
-            <td>
-                <form action="<$editaction>" method="GET"   >
-                    <input type="hidden" name="id_user" value="<$id_user>">
-                           <input type="submit" value="Edit User"> </input>
+            <td><form>
+                <input type="button" value="Редагувати дані користувача" onClick='location.href="<$editaction>"'>
                 </form>
+                
             </td></tr>   
         
         

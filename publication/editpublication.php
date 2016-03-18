@@ -11,32 +11,71 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserRightPanel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/PublicationsCreatorView.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SqlManager.php';
 
 $session = new SessionControler();
 if ($session->is_Session() == false) {
-    header("Location: " . LocationControler::getLoginPage());
-    return;
+     $arr_arg = array("message" => "Ви не увійшли в систему ",
+        "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися в на головну сторінку");
+    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    echo $page;
+    return ; 
 }
 
 
 
 
 $arg = array();
-$id_publication=(int)$_GET["id_publication"];
-
-$queryDB ="select  *   from publications,table_users"
-                . " where publications.id_user=table_users.id_user and publications.id_public = {$id_publication}  limit 1";
-
- $link =  mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site",$link);
-        //print_r(mysql_error($link));
-         $result = mysql_query($queryDB,$link); 
-
-
-if (isset($_POST["header_of_pub"]) && isset($_POST["body_of_pub"])) {
-    $arg["header_of_pub"] = $_POST["header_of_pub"];
-    $arg["body_of_pub"] = $_POST["body_of_pub"];
+$id_publication=(int)$_REQUEST["id_publication"];
+$id_user = SessionControler::getCurrentId();
+$sql = new SqlManager();
+$sql->selectQuery("select  *   from publications where id_public={$id_publication} limit 1");
+if($sql->getNumRow()!=1)
+{
+     $arr_arg = array("message" => "Публікації з ID:{$id_publication} не існує ",
+        "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися в на головну сторінку");
+    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    echo $page;
+    return ; 
 }
+$row = $sql->getRow(0);
+if(($row["id_user"]==$id_user||SessionControler::isAdmin_current())==false)
+{
+     $arr_arg = array("message" => "Ви не можете редагувати дану публікацію",
+        "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися в на головну сторінку");
+    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    echo $page;
+    return ; 
+}
+
+
+
+
+if($_SERVER["REQUEST_METHOD"]=="GET")
+{
+   $pub_creat_view = new PublicationsCreatorView($row);
+  
+    
+}
+elseif($_SERVER["REQUEST_METHOD"]=="POST")
+{
+    $pub_creat_view = new PublicationsCreatorView($_POST);
+    if($pub_creat_view->isValid())
+    {
+        $pub_creat_view->createPublication(new PublicationEditor());
+         $arr_arg = array("message" => "Ви відредагували публікацію",
+        "address_redirect" => LocationControler::getPublicationPage()."?publication={$_POST["id_public"]}", "text_redirect" => "Повернутися в на  сторінку публіуації");
+    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    echo $page;
+    return ;
+        
+        
+    }
+   
+    
+}
+
+
 
 
 $rightp = new UserRightPanel();
@@ -44,7 +83,7 @@ $rightp = new UserRightPanel();
 
 
 
-$pub_creat_view = new PublicationsCreatorView($arg);
+//$pub_creat_view = new PublicationsCreatorView($arg);
 
 
 $globaldiv = new GlobalDiv(/* $head, */ $rightp, $pub_creat_view /* , $foot */);

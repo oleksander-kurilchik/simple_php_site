@@ -32,9 +32,9 @@ class PublicationsCreatorView implements IMainPlaceDiv {
 
         $flag1 = $flag2 = false;
         if (isset($this->arr_arg["header_of_pub"])) {
-                $this->arr_arg["header_of_pub"] = htmlspecialchars($this->arr_arg["header_of_pub"], ENT_QUOTES);
+            $this->arr_arg["header_of_pub"] = htmlspecialchars($this->arr_arg["header_of_pub"], ENT_QUOTES);
 
-            
+
             $flag1 = true;
             if (strlen($this->arr_arg["header_of_pub"]) < 15) {
                 $this->arr_arg["header_of_pub_m"] = "Header so small";
@@ -45,8 +45,10 @@ class PublicationsCreatorView implements IMainPlaceDiv {
                 $flag1 = false;
             }
         }
+ else { $this->arr_arg["header_of_pub_m"] = "Hе вірно передані параметри";}
+        
         if (isset($this->arr_arg["body_of_pub"])) {
-            
+
             $this->arr_arg["body_of_pub"] = htmlspecialchars($this->arr_arg["body_of_pub"], ENT_QUOTES);
 
             $flag2 = true;
@@ -61,9 +63,11 @@ class PublicationsCreatorView implements IMainPlaceDiv {
 
 
 
-            $this->is_valid =( ($flag1==true&&$flag2==true)? true:false) ;
+            
         }
-
+         else { $this->arr_arg["body_of_pub_m"] = "Hе вірно передані параметри";}
+        
+$this->is_valid = ( ($flag1 == true && $flag2 == true) ? true : false);
 
 
         $this->page = new BaseView($this->arr_arg, $this->pattern);
@@ -73,19 +77,15 @@ class PublicationsCreatorView implements IMainPlaceDiv {
     public function isValid() {
         return $this->is_valid;
     }
-    public function  createPublication(PublicationCreator $creator)
-    {
-        if($this->isValid()==true)
-        {
+
+    public function createPublication(PublicationCreator $creator) {
+        if ($this->isValid() == true) {
             return $creator->createPublications($this->arr_arg);
-            
         }
-        return  false;
-        
+        return false;
     }
 
-    public function buildForm() 
-    {
+    public function buildForm() {
         return $this->page;
     }
 
@@ -96,10 +96,8 @@ class PublicationCreator {
 
     protected $arr_arg;
 
-   
-
-    public function createPublications($arr ) {
-                $this->arr_arg = $arr;        
+    public function createPublications($arr) {
+        $this->arr_arg = $arr;
         mysql_connect("localhost", "root", "1234");
         mysql_select_db("my_first_site");
         $query = "insert into publications  (header_of_pub,body_of_pub,date_of_creation,"
@@ -121,8 +119,8 @@ class PublicationCreator {
 
 class PublicationEditor extends PublicationCreator {
 
-    public function createPublications($arr ) {
-                $this->arr_arg = $arr;   
+    public function createPublications($arr) {
+        $this->arr_arg = $arr;
         mysql_connect("localhost", "root", "1234");
         mysql_select_db("my_first_site");
         $query = "update  publications  set header_of_pub =\"{$this->arr_arg["header_of_pub"]}\" ,"
@@ -130,8 +128,7 @@ class PublicationEditor extends PublicationCreator {
                 . " where id_public ={$this->arr_arg["id_public"]}   ";
 
         $result = mysql_query($query);
-                return true;
-
+        return true;
     }
 
     //put your code here

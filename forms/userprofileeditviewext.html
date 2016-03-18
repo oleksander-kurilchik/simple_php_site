@@ -1,10 +1,10 @@
-<form action="<$action_epi>" method="POST">
+<form action="<$action>" method="POST">
     <input type="hidden" name="id_user" value="<$id_user>">
-    <table>
+    <table width="80%">
         <tbody>
 
             <tr><td colspan="3">Edit Personal info of user "<$login>" </td></tr>
-            <tr><td >Current first name <$first_name>  </td></tr>
+            <tr><td  width="50%">Current first name <$first_name>  </td></tr>
             <tr><td>Edit first name </td><td><input type="text" name="first_name" placeholder="Enter first name"> </td><td><$first_name_m> </td>   </tr>
             <tr><td >Current seconf name <$second_name>  </td></tr>
             <tr><td>Edit second name </td><td><input type="text" name="second_name" placeholder="Enter second name"> </td><td><$second_name_m> </td>   </tr>
@@ -32,7 +32,7 @@
             
 
             <tr><td> Reset  </td><td><input  type="reset" value="Reset Personal Info"> </td><td></td>   </tr>
-            <tr><td>Save changing  </td><td><input  type="submit" value="Save Personal Info"> </td><td></td>   </tr>
+            <tr><td>Save changing  </td><td><input  type="submit" name ="save_personal_info" value="Save Personal Info"> </td><td></td>   </tr>
            
         </tbody>
 
@@ -41,34 +41,64 @@
 </form>   
 
 <br>
-<form action="<$action_edit_email>" method="POST">
+<form action="<$action>" method="POST">
             <input type="hidden" name="id_user" value="<$id_user>">
 
-    <table>
+    <table width="80%">
         <tbody>
 
             <tr><td colspan="3">Edit Email </td></tr>
-            <tr><td >Current first name <$email>  </td></tr>
+            <tr><td  width="50%">Current first email <$email>  </td></tr>
             <tr><td>Edit email</td><td><input type="email" name="email" placeholder="Enter email"> </td><td><$email_m> </td>   </tr>
-            <tr><td>Save email  </td><td><input  type="submit" value="Save email"> </td><td></td>   </tr> 
+            <tr><td>Save email  </td><td><input  type="submit" name="save_email" value="Save email"> </td><td></td>   </tr> 
 
         </tbody>
     </table>
 </form> 
 <br>
 
-<form action="<$action_edit_password>" method="POST">
+
+<form action="<$action>" method="POST">
             <input type="hidden" name="id_user" value="<$id_user>">
 
-    <table>
+            <table width="80%">
+        <tbody>
+           <tr ><td  colspan="3" > Current admission <$admission>  </td></tr>
+           <tr><td width="50%">Edit admission  </td><td>
+                    <select name="admission"   >
+                        <option disabled>Edit admission</option>
+                        <option value="no_edit" selected>No Edit admission</option>
+                        <option value="user">User</option >
+                        <option value="admin">Admin</option>
+                    </select>
+                </td><td><$admission_m> </td>   </tr>
+           <tr><td>Save admission  </td><td><input  type="submit" name="save_admission" value="Save admission"> </td><td></td>   </tr>
+           
+        </tbody>
+
+
+    </table>
+</form>  
+
+
+
+
+
+
+
+
+<form action="<$action>" method="POST">
+            <input type="hidden" name="id_user" value="<$id_user>">
+
+    <table width="80%">
         <tbody>
 
             <tr><td colspan="3">Change Password</td></tr>
             
            
-            <tr><td>Enter new password </td><td><input type="password" name="new_password" placeholder="Enter new password"> </td><td><$new_password_m> </td>   </tr>
+            <tr><td width="50%">Enter new password </td><td><input type="password" name="new_password" placeholder="Enter new password"> </td><td><$new_password_m> </td>   </tr>
             <tr><td>Repead new password </td><td><input type="password" name="rnew_password" placeholder="Repead new password"> </td><td><$rnew_password_m> </td>   </tr>
-            <tr><td>Save new password  </td><td><input  type="submit" value="Save"> </td><td></td>   </tr>
+            <tr><td>Save new password  </td><td><input  type="submit" name ="save_password" value="Save"> </td><td></td>   </tr>
            
         </tbody>
 

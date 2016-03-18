@@ -1,9 +1,24 @@
 
 
         <div>
+            
+            <script type="text/javascript"> 
+            function encodeEntities()
+            {
+              var str= document.getElementById('body_of_pub').value;
+             
+           var  str=str.replace(/&lt;/g,"<");
+            
+               str=str.replace(/&gt;/g,">");
+               str=str.replace(/&quot;/g,"\""); 
+               document.getElementById('body_of_pub').value=str;
+               
+            }
+            
+            </script>
             <form action = "<$action>" method="POST">
                 <label> Header<input type="text" name="header_of_pub" placeholder="enter header" value = "<$header_of_pub>"/></label><$header_of_pub_m> <br/>
-                <label> Text <br><textarea  name="body_of_pub" placeholder="enter text" style="width: 500px; height:300px "  ><$body_of_pub></textarea> </label><$body_of_pub_m> <br/>
+                <label> Text <br><textarea id="body_of_pub" onkeyup="encodeEntities()"  name="body_of_pub" placeholder="enter text" style="width: 500px; height:300px "  ><$body_of_pub></textarea> </label><$body_of_pub_m> <br/>
                 <input type="hidden" name="id_public" value="<$id_public>">
                 <input type="submit" value="next">
 
