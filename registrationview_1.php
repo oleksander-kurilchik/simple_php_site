@@ -12,7 +12,7 @@
  * @author profesor
  * E
  */
-class RegistrationView {
+class RegistrationView111 {
 
     public $login;
        public $loginmessage;

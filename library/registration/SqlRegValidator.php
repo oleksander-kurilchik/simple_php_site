@@ -11,7 +11,7 @@
  *
  * @author profesor
  */
-class SqlRegValidator11 {
+class SqlRegValidator {
     //put your code here
     public static function isLoginExists(  $login)
     {

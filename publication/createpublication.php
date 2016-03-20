@@ -1,10 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 require_once $_SERVER['DOCUMENT_ROOT'] .'/SqlPostCreatot.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
@@ -17,11 +13,36 @@ if ($session->is_Session() == false) {
     header("Location: " . LocationControler::getLoginPage());
     return;
 }
-$arg = array();
-if (isset($_POST["header_of_pub"]) && isset($_POST["body_of_pub"])) {
-    $arg["header_of_pub"] = $_POST["header_of_pub"];
-    $arg["body_of_pub"] = $_POST["body_of_pub"];
+
+
+if($_SERVER["REQUEST_METHOD"]=="GET")
+{
+   $pub_creat_view = new PublicationsCreatorView(array());
+   print_r($_SERVER["REQUEST_METHOD"]);
+  
+    
 }
+elseif($_SERVER["REQUEST_METHOD"]=="POST")
+{
+    print_r($_SERVER["REQUEST_METHOD"]);
+    $_POST["id_user"]=  SessionControler::getCurrentId();
+    $pub_creat_view = new PublicationsCreatorView($_POST);
+    
+    if($pub_creat_view->isValid())
+    {
+        $pub_creat_view->createPublication(new PublicationCreator());
+         $arr_arg = array("message" => "Ви створили публікацію",
+        "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися  на головну  сторінку ");
+    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    echo $page;
+    return ;
+       
+        
+   }
+   
+    
+}
+
 
 
 $rightp = new UserRightPanel();
@@ -29,7 +50,7 @@ $rightp = new UserRightPanel();
 
 
 
-$pub_creat_view = new PublicationsCreatorView($arg);
+//$pub_creat_view = new PublicationsCreatorView($arg);
 
 
 $globaldiv = new GlobalDiv(/* $head, */ $rightp, $pub_creat_view /* , $foot */);

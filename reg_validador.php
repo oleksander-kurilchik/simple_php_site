@@ -18,7 +18,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/sqlusercreator.php';
  */
 
 //sosdatm klas z danimy i oshibkami
-class RegistrationValidator {
+class RegistrationValidator1111 {
 
     public static function isValidPostValue(array $arr, RegistrationView $viev, SqlUserCreator $creator) {
         $flag = true;

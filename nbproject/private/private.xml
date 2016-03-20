@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/server3/admin/user/index.php</file>
-            <file>file:/var/www/server3/admin/user/userdelete.php</file>
+            <file>file:/var/www/server3/library/PublicationsCreatorView.php</file>
+            <file>file:/var/www/server3/forms/publicationcreatorview.html</file>
+            <file>file:/var/www/server3/publication/editpublication.php</file>
+            <file>file:/var/www/server3/publication/createpublication.php</file>
         </group>
     </open-files>
 </project-private>

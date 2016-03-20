@@ -45,7 +45,7 @@ class PublicationsCreatorView implements IMainPlaceDiv {
                 $flag1 = false;
             }
         }
- else { $this->arr_arg["header_of_pub_m"] = "Hе вірно передані параметри";}
+ 
         
         if (isset($this->arr_arg["body_of_pub"])) {
 
@@ -65,7 +65,7 @@ class PublicationsCreatorView implements IMainPlaceDiv {
 
             
         }
-         else { $this->arr_arg["body_of_pub_m"] = "Hе вірно передані параметри";}
+      
         
 $this->is_valid = ( ($flag1 == true && $flag2 == true) ? true : false);
 

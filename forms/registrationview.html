@@ -1,0 +1,31 @@
+
+<div>
+    <form action="<$action>" method="POST"><table>
+
+            <tbody>
+               <tr><td colspan="3"><center>  Реєстрація нового користувача</center> </td></tr>
+            <tr><td colspan="3">Заповніть всі поля для реєстрації </td></tr>
+
+            <tr><td>Логін</td><td><input name="login" type="text" size="30" maxlength="90" value="<$login>"  ></td><td><$login_m></td></tr>
+
+
+            <tr><td> Імя</td><td><input name="firts_name" type="text" size="30" maxlength="90"  value="<$firts_name>" ></td><td><$first_name_m></td></tr>
+            <tr><td> Прізвище</td><td><input name="second_name" type="text" size="30" maxlength="90"  value="<$second_name>" ></td><td><$second_name_m></td></tr>
+            <tr><td>По батькові</td><td><input name="last_name" type="text" size="30" maxlength="90"  value="<$last_name>" ></td><td><$last_name_m></td></tr>
+            <tr><td>Пароль </td><td><input name="password1" type="password" size="30" maxlength="90"   ></td><td><$password1_m></td></tr>
+            <tr><td>Повторіть пароль</td><td><input name="password2" type="password" size="30" maxlength="90"   ></td><td><$password2_m></td></tr>
+            <tr><td>Стать</td><td><select name="sex"   >
+                        <option value="male"   <$male>  >Male</option >
+                        <option value="female"   <$female> > Female</option></select></td><td><$sex_m></td></tr>
+            <tr><td>Дата народження</td><td><input name="date_of_bird" type="text" size="30" maxlength="90"  value="<$date_of_bird>" ></td><td><$date_of_bird_m></td></tr>
+          <tr><td>Електрона скринька </td><td><input name="email" type="text" size="30" maxlength="150"  value="<$email>" ></td><td><$email_m></td></tr>
+            <tr><td>Адреса</td><td><input name="address" type="text" size="30" maxlength="256"  value="<$address>" ></td><td><$address_m></td></tr>
+            <tr><td colspan="3"> <input type="submit" value="Зареєструватися"></td></tr>
+
+
+                </tbody>
+        </table> 
+    </form>
+
+</div>
+
