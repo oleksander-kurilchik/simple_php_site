@@ -3,7 +3,7 @@
 
 require_once '/var/www/server3/interfaces/IRightPanelDiv.php';
 require_once '/var/www/server3/library/LocationControler.php';
-
+require_once '/var/www/server3/library/LoginFormPanelView.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,24 +17,20 @@ require_once '/var/www/server3/library/LocationControler.php';
  */
 class GuestRightPanel implements IRightPanelDiv{
     private $pattern;
+    private $loginform;
     public function __construct() 
     {
+        $this->loginform = new LoginFormPanelView(null);
         
-        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/loginbase.html";
+        
+        
     }
     
     
     public function buildForm() 
     {
-          $page =  file_get_contents($this->pattern);
-          $page =  preg_replace('|{\$registration}|im',  LocationControler::getRegistrationPage() ,  $page);
-         
-          $page =  preg_replace('|{\$login}|im', NULL,  $page);
-          $page =  preg_replace('|{\$loginmessage}|im',NULL,  $page);
-          $page =  preg_replace('|{\$passwordmessage}|im', NULL,  $page);
-         
-          return $page;
-          return $page;
+          
+          return $this->loginform;
         
     }
 

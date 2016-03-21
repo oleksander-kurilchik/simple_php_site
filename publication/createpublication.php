@@ -1,17 +1,24 @@
 <?php
 
-
+/*
 require_once $_SERVER['DOCUMENT_ROOT'] .'/SqlPostCreatot.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserRightPanel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/PublicationsCreatorView.php';
+ * *
+ */
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 $session = new SessionControler();
-if ($session->is_Session() == false) {
-    header("Location: " . LocationControler::getLoginPage());
-    return;
+if (SessionControler::is_Session() == false) {
+    
+    $arr_arg = array("message" => "Ви не залогінилися",
+        "address_redirect" => LocationControler::getLoginPage(), "text_redirect" => "Повернутися  на   сторінку входу ");
+    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    echo $page;
+    return ;
 }
 
 

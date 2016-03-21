@@ -23,8 +23,10 @@ class RegistrationValidator {
 
     */
     public static function isValidLogin( &$login) {
-        /*узнать в чом ощибка*/
-        if (preg_match('|^\s*((([[:alnum:]]+[-_.]?)+[[:alnum:]]+){2,40})\s*$|', $login, $matches) == true) {
+      
+        
+        if (preg_match('|^\s*([a-zA-Z0-9])\s*$|', $login, $matches) == true) {
+       // if (preg_match('|^\s*((([[:alnum:]]+[-_.]?)+[[:alnum:]]+){2,40})\s*$|', $login, $matches) == true) {
             $login = $matches[1];
             return true;
         }

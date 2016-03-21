@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/profile/UserPublicationView.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
@@ -14,6 +14,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserProfileEditView.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/PublicationListView.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserInfoViewLite.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/CommentListViewExt.php';
+
+*/
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
+
 
 $session = new SessionControler();
 echo "<pre>";

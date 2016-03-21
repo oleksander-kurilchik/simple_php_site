@@ -2,12 +2,18 @@
 
 
 /*  Доробить провірку на існування*/
+/*
 require_once '/var/www/server3/library/SessionControler.php';
 require_once '/var/www/server3/library/LocationControler.php';
 require_once '/var/www/server3/library/GlobalDiv.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserRightPanel.php';
+*/
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
+
+
+
 $session = new SessionControler();
-if($session->is_Session() == false)
+if(SessionControler::is_Session() == false)
 {
     echo 'Ви не увійшли , тому не можете оставляти коментарі';
     return;

@@ -29,7 +29,7 @@ class UserRightPanel implements IRightPanelDiv {
          $arr_arg = array();
          
          
-         if(SessionControler::isAdmin_current())
+         if(SessionControler::isAdmin())
          {
              $admin_panel = new BaseView(array("admin_address"=>LocationControler::getAdminPage()), $this->pattern_admin_panel);
              $arr_arg["admin_panel"]=$admin_panel->__ToString();

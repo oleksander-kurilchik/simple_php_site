@@ -22,11 +22,19 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListViewExt.php';
 
 $session = new SessionControler();
 
-if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
+if((SessionControler::is_Session() ==true&&SessionControler::isAdmin())==false)
 {
-    header("Location: ".LocationControler::getLoginPage());
+     $arr_arg = array("message" => "Ви не маєте права тут знаходитися",
+        "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну");
+    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    echo $page;
     return;
+     
 }
+
+
+
+
 if((isset( $_GET["mode"]))==false)
 {
      header("Location: ".LocationControler::getAdminPage()."/index.php?mode=users"); 

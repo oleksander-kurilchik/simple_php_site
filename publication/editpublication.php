@@ -5,16 +5,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require_once $_SERVER['DOCUMENT_ROOT'] .'/SqlPostCreatot.php';
+/*
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserRightPanel.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/PublicationsCreatorView.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SqlManager.php';
+ * */
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php'; 
+
 
 $session = new SessionControler();
-if ($session->is_Session() == false) {
+if (SessionControler::is_Session() == false) {
      $arr_arg = array("message" => "Ви не увійшли в систему ",
         "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися в на головну сторінку");
     $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
@@ -39,7 +42,7 @@ if($sql->getNumRow()!=1)
     return ; 
 }
 $row = $sql->getRow(0);
-if(($row["id_user"]==$id_user||SessionControler::isAdmin_current())==false)
+if(($row["id_user"]==$id_user||SessionControler::isAdmin())==false)
 {
      $arr_arg = array("message" => "Ви не можете редагувати дану публікацію",
         "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися в на головну сторінку");

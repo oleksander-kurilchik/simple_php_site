@@ -1,40 +1,30 @@
 <?php
-
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SqlManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/library/registration/SqlRegValidator.php';
+*/
 
-/**
- * Description of SessoinControler
- *
- * @author profesor
- */
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
+
 class SessionControler {
     public function __construct()
     {
          session_start();
     }
-    public function is_Session()
+   static public function is_Session()
     {       
         if(isset($_SESSION['login']))    {
     return true;
     }
     return false;
 }
-  static public function is_Session_static()
-    {       
-        if(isset($_SESSION['login']))    {
-    return true;
-    }
-    return false;
-}
+ 
 
-
-public  function setLogin($login)
+static public  function setSessionLogin($login)
 {
     $_SESSION['login'] = $login;
+    $_SESSION['id'] = SqlRegValidator::getId($login);
+    
 }
 static public  function getCurrentLogin()
 {
@@ -45,27 +35,12 @@ static public  function getCurrentId()
     return $_SESSION['id'];
 }
 
-
-
-public  function setId($id)
+static public function isAdmin()
 {
-    $_SESSION['id'] = $id;
-}
-public  function setAdmission($admission)
-{
-    $_SESSION['admission'] = $admission;
-}
-
-public function isAdmin()
-{
-    if($_SESSION['admission']==="admin")
-        return true;
-    return false;
-}
-
-static public function isAdmin_current()
-{
-    if($_SESSION['admission']==="admin")
+    $sql = new SqlManager();
+    $sql->selectQuery("select admission from table_users where login=\"{$_SESSION['login']}\"");
+    $row = $sql->getRow(0); 
+    if($row['admission']==="admin")
         return true;
     return false;
 }
@@ -74,6 +49,7 @@ static public function isAdmin_current()
 
 public function __destruct () 
     {
+    
         
     }
     //put your code here

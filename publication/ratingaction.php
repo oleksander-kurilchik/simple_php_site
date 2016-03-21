@@ -1,9 +1,10 @@
 <?php
-
+/*
 require_once $_SERVER['DOCUMENT_ROOT']."/library/BaseView.php";
 require_once $_SERVER['DOCUMENT_ROOT']."/library/LocationControler.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
-
+*/
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
 

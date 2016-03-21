@@ -40,11 +40,6 @@ class PublicationView implements IMainPlaceDiv {
 from  table_users, publications
 where publications.id_user =table_users.id_user and publications.id_public ={$id_publication} LIMIT 1 ");
         //$row=mysql_fetch_array($result);
-        echo mysql_error();
-        if (mysql_num_rows($result) == 0) {
-            echo "Ошибочный запрос: публикации не существуэт";
-            return;
-        }
         $row = mysql_fetch_array($result);
         $this->arr_data=$row;
         $this->owner_publication = $row["login"];
@@ -55,10 +50,10 @@ where publications.id_user =table_users.id_user and publications.id_public ={$id
         $commentform = null;
         $editform = null;
         $rating_action = 0;
-        if (SessionControler::is_Session_static() == true) {
+        if (SessionControler::is_Session()== true) {
             $commentform = new BaseView(array("action" => LocationControler::getPublicationFolder(). "/addcomment.php", "id_publication" => $id_publication)
                     , $this->pattern_comment_form);
-            if (SessionControler::getCurrentLogin() == $this->owner_publication || SessionControler::isAdmin_current() == true) {
+            if (SessionControler::getCurrentLogin() == $this->owner_publication || SessionControler::isAdmin() == true) {
                 $editform = new BaseView(array("action_delete" => LocationControler::getPublicationFolder() . "deletepublication.php"
                     , "action_edit" => LocationControler::getPublicationFolder(). "editpublication.php"
                     , "id_publication" =>$id_publication)
