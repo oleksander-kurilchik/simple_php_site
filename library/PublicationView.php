@@ -1,22 +1,6 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/interfaces/IMainPlaceDiv.php';
-
-require_once '/var/www/server3/library/BaseView.php';
-require_once '/var/www/server3/library/CommentViewItem.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/RatingActionView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListView.php';/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of PublicationView
- *
- * @author profesor
- */
 class PublicationView implements IMainPlaceDiv {
 
     private $page;
@@ -33,14 +17,18 @@ class PublicationView implements IMainPlaceDiv {
         $this->pattern_comment_form = $_SERVER['DOCUMENT_ROOT'] . "/forms/commentform.html";
         $this->pattern_action_publicaton = $_SERVER['DOCUMENT_ROOT'] . "/forms/actionpublicationview.html";
         
-        mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
-        $result = mysql_query("select publications.id_public , publications.header_of_pub,publications.body_of_pub
+       
+        
+        $stringQuery ="select publications.id_public , publications.header_of_pub,publications.body_of_pub
            ,publications.date_of_creation,publications.date_of_last_edit,table_users.login,table_users.admission
 from  table_users, publications
-where publications.id_user =table_users.id_user and publications.id_public ={$id_publication} LIMIT 1 ");
-        //$row=mysql_fetch_array($result);
-        $row = mysql_fetch_array($result);
+where publications.id_user =table_users.id_user and publications.id_public ={$id_publication} LIMIT 1 ";
+        $sql = new SqlManager();
+        $sql->selectQuery($stringQuery);
+        $row = $sql->getRow(0);
+        
+        
+        
         $this->arr_data=$row;
         $this->owner_publication = $row["login"];
 
@@ -60,12 +48,12 @@ where publications.id_user =table_users.id_user and publications.id_public ={$id
                         , $this->pattern_action_publicaton);
             }
             
-            
-            
-            $result = mysql_query("SELECT * FROM rating_of_pub 
+            $sql->selectQuery("SELECT * FROM rating_of_pub 
                         where rating_of_pub.id_publication ={$id_publication} "
                     . "and rating_of_pub.id_user =" . SessionControler::getCurrentId() . " LIMIT 1; ");
-                        if(mysql_num_rows($result) == 0)
+            
+            
+                        if($sql->getNumRow() == 0)
                         {
                             $rating_action =1;
                         }
@@ -74,8 +62,8 @@ where publications.id_user =table_users.id_user and publications.id_public ={$id
         }
           $ratingview = new RatingActionView($rating_action, $id_publication);
           ///////////////////////////rating result 
-          $result = mysql_query("select (SUM(rating)/count(*)) from  rating_of_pub where id_publication={$id_publication}");
-          $row_rating = mysql_fetch_array($result);
+           $sql->selectQuery("select (SUM(rating)/count(*)) from  rating_of_pub where id_publication={$id_publication}");
+           $row_rating =$sql->getRow(0);
           
           
           $rating=(float) $row_rating[0]; 

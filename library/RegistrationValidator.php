@@ -23,11 +23,13 @@ class RegistrationValidator {
 
     */
     public static function isValidLogin( &$login) {
-      
-        
-        if (preg_match('|^\s*([a-zA-Z0-9])\s*$|', $login, $matches) == true) {
+     
+        if (preg_match('|^\s*([[:alnum:]]{3,40})\s*$|', $login, $matches) == true) {
        // if (preg_match('|^\s*((([[:alnum:]]+[-_.]?)+[[:alnum:]]+){2,40})\s*$|', $login, $matches) == true) {
             $login = $matches[1];
+            
+          
+            
             return true;
         }
         return false;
@@ -42,13 +44,17 @@ public static function isValidSex( &$sex) {
         return false;
     }
     public static function isValidEmail( &$email) {
+        
+         if (filter_var($email, FILTER_VALIDATE_EMAIL))
+         {
+                 /*
         if (preg_match('|^\s*('
                         . '([[:alnum:]]+[-_.]?)+[[:alnum:]]+'
                         . '@'
                         . '(([[:alnum:]]+[-._]?[[:alnum:]]+\.)+)'
                         . '[a-zA-Z]{2,5}'
                         . ')\s*$|', $email, $matches) == true) {
-            $email = $matches[1];
+            $email = $matches[1];*/
             return true;
         }
         return false;
@@ -57,8 +63,8 @@ public static function isValidSex( &$sex) {
     public static function isValidFSLName( &$name) {
 
         $name = preg_replace('|[\s]{2,}|', ' ', $name);
-
-        if (preg_match('|^\s*(([[:alpha:]]{2,}+[\s]*)+([[:alpha:]]{2,})?)\s*$|', $name, $matches) == true) {
+if (preg_match('|^\s*([[:alnum:]]{3,40})\s*$|', $name, $matches) == true) {
+       // if (preg_match('|^\s*(([[:alpha:]]{2,}+[\s]*)+([[:alpha:]]{2,})?)\s*$|', $name, $matches) == true) {
             $name = $matches[1];
             return true;
         }

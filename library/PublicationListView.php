@@ -1,8 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/interfaces/IMainPlaceDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationNavigator.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
+
 
 
 class PublicationListView implements IMainPlaceDiv {
@@ -21,7 +19,6 @@ class PublicationListView implements IMainPlaceDiv {
         
         $list_pub="";
            $arr_list = $this->getDataFromDB($this->page);
-          // print_r($arr_list);
            foreach ($arr_list as $key => $value )
            {   
                
@@ -70,30 +67,18 @@ class PublicationListView implements IMainPlaceDiv {
     }
     private function getDataFromDB($page)
     {
-         $link= mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site",$link);
-       
-        $result = mysql_query("select  publications.id_public ,publications.date_of_creation,publications.body_of_pub,publications.header_of_pub, table_users.login   from publications,table_users"
+        
+        $query = "select  publications.id_public ,publications.date_of_creation,publications.body_of_pub,publications.header_of_pub, table_users.login   from publications,table_users"
                 . " where publications.id_user=table_users.id_user ".$this->query.
-                " order by publications.id_public    limit ".((string)($page-1)*$this->count_item_on_page) .", ". ((string)$this->count_item_on_page). " ",$link);
+                " order by publications.id_public    limit ".((string)($page-1)*$this->count_item_on_page) .", ". ((string)$this->count_item_on_page). " ";
         
-        
-        print_r(mysql_error($link));
-        
-      $arr_get=array();
-        while ($row = mysql_fetch_array($result))
-                { $arr_get[]=$row; }
-           
-      $result = mysql_query("select  count(*)    from publications,table_users"
-                . " where publications.id_user=table_users.id_user ".$this->query."   ");
-        
-             $row = mysql_fetch_array($result);
+        $sql = new SqlManager();
+        $sql->selectQuery($query);
+        $arr_get= $sql->getAllQueryArray();
+      $sql->selectQuery("select  count(*)    from publications,table_users"
+                . " where publications.id_user=table_users.id_user ".$this->query."   ")  ;
+             $row = $sql->getRow(0);
               $this->count_page = ceil($row["count(*)"]/$this->count_item_on_page);
-             // print_r( $this->count_page );
-                       
-                
-                
- mysql_close($link);
                 return $arr_get;
         
     }

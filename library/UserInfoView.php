@@ -1,21 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/interfaces/IMainPlaceDiv.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
-
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of UserInfoView
- *
- * @author profesor
- */
 class UserInfoView implements IMainPlaceDiv
 {
     protected  $pattern;
@@ -24,39 +9,27 @@ class UserInfoView implements IMainPlaceDiv
     public function __construct ($login,$arr_arg = array())
     {
                 $this->initPattern();
-                
-                mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
-        $result = mysql_query("select *from  table_users
+               $sql = new SqlManager();
+$sql->selectQuery("select *from  table_users
 where table_users.login = \"{$login}\" LIMIT 1; ");
- $row = mysql_fetch_array($result);
+
+
+ $row = $sql->getRow(0);
  
          $id_user = $row["id_user"];
-        $result = mysql_query("select count(*)from  publications where id_user={$id_user};");
-           $row_c_p = mysql_fetch_array($result);
-          $row["countpub"] = $row_c_p["count(*)"];
-          
-          
-          $result = mysql_query("select count(*)from  comments_of_pub where id_user={$id_user};");
-           $row_c_c = mysql_fetch_array($result);
-             $row["countcomm"] = $row_c_c["count(*)"];
-             
-              $row = $row + $arr_arg;
-             
-           /// potim pererobit
-           //  $row["deleteaction"] =  LocationControler::getAdminFolder()."/user/userdelete.php?id_user={$id_user}";
-             //$row["editaction"] = LocationControler::getAdminFolder()."/user/useredit.php?id_user={$id_user}";
-          
-            
- $this->page = new BaseView($row,$this->pattern)    ;  
-        
+         $sql->selectQuery("select count(*)from  publications where id_user={$id_user};");       
+           $row_c_p = $sql->getRow(0);
+          $row["countpub"] = $row_c_p["count(*)"]; 
+          $sql->selectQuery("select count(*)from  comments_of_pub where id_user={$id_user};");          
+           $row_c_c = $sql->getRow(0);
+             $row["countcomm"] = $row_c_c["count(*)"];             
+              $row = $row + $arr_arg;            
+ $this->page = new BaseView($row,$this->pattern)    ;        
     }
     protected function  initPattern()
     {
        $this->pattern = $_SERVER['DOCUMENT_ROOT']."/forms/user/userinfoview.html"; 
     }
-
-
     public function buildForm() {
       
           return $this->page->__ToString();

@@ -1,23 +1,7 @@
 <?php
 //admin panel
 
-
-require_once '/var/www/server3/library/LocationControler.php';
-require_once '/var/www/server3/library/SessionControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminRightPanel.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/GlobalDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminCommentsListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminPublicationListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminRightPanel.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/admin/AdminUsersListView.php';
-
-
-
-
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/UserListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/PublicationListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentListViewExt.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
 $session = new SessionControler();

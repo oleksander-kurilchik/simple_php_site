@@ -1,8 +1,4 @@
 <?php
-/*
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SqlManager.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/registration/SqlRegValidator.php';
-*/
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 

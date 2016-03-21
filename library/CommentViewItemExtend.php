@@ -1,7 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/CommentViewItem.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.

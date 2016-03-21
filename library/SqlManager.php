@@ -10,11 +10,13 @@ class SqlManager {
         $this->db = new mysqli('127.0.0.1', 'root', '1234', 'my_first_site');
         if ($this->db->connect_error) {
             echo '<h1>Помилка зєднання з базою даних<h1>';
+            die();
         }
     }
 
     public function selectQuery($stringQuery) {
         $this->result = $this->db->query($stringQuery);
+        print_r($this->db->error);
         if ($this->result != false)
             return true;
         return false;
@@ -36,7 +38,7 @@ class SqlManager {
     }
 
     public function getAllQueryArray() {
-
+        $arr_ret=array();
         if ($this->result instanceof mysqli_result) {
             if ($this->result->num_rows > 0) {
                 $this->result->data_seek(0);

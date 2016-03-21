@@ -1,10 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/interfaces/IMainPlaceDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'] .'/library/BaseView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] .'/library/CommentListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/PageNavigator.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
 /*
@@ -41,16 +37,12 @@ class CommentListViewExt implements IMainPlaceDiv {
         
        // print_r($queryDB);
         
-        $link =  mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site",$link);
-        //print_r(mysql_error($link));
-         $result = mysql_query($queryDB,$link); 
-         // print_r(mysql_error($link));
-             $row = mysql_fetch_array($result);
+        $sql = new SqlManager();
+        $sql->selectQuery($queryDB);
+        
+             $row = $sql->getRow(0);
               $this->count_page = ceil($row["count(*)"]/$this->count_item_on_page);
-              //print_r(mysql_error($link));
-              
-              $query_comment = $query." limit ".((string)($page-1)*$this->count_item_on_page) .", ".
+                     $query_comment = $query." limit ".((string)($page-1)*$this->count_item_on_page) .", ".
                       $this->count_item_on_page;
 
               $list_comments =  new CommentListView($query_comment,$typeofitem);

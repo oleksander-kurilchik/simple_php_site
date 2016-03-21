@@ -1,7 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/interfaces/IRightPanelDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
 /*

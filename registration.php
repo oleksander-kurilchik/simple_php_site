@@ -1,35 +1,43 @@
 <?php
-require_once './registrationview.php';
-require_once './reg_validador.php';
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */echo "<pre>";
-    print_r($_POST);
-      echo "</pre>";
-       $viev = new RegistrationView();
-       $creator = new SqlUserCreator();
-if(!empty($_POST))
-{
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
+print_r($_POST);
 
-    
-    if(RegistrationValidator::isValidPostValue($_POST, $viev, $creator)==true)
-    {
-        $creator->createUser();
-    }
- else {
-       echo $viev->BuildForm();
-    }
- 
-}
- else
+$session = new SessionControler();
+if(SessionControler::is_Session() == true)
 {
+   
+      $arr_arg = array("message" => "Ви вже залогінилися",
+            "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну сторінку");
+        $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+        echo $page;
+        return;
     
-    $viev = new RegistrationView();
-echo $viev->BuildForm();
-     
 }
+
+$reg_form = new RegistrationView($_POST);
+if($reg_form->isValid())
+{
+    $reg_form->registrationUser();
+    $arr_arg = array("message" => "Вітаю! Ви зарееструвалися!!!",
+            "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну сторінку");
+        $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+        echo $page;
+        SessionControler::setSessionLogin($_POST["login"]);
+        return;
+    
+}
+ else {
+     $arr_arg = array("message" => $reg_form->__toString(),
+            "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну сторінку");
+        $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+        echo $page;
+        return;
+    
+}
+
+
+
+
 
 
 

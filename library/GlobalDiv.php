@@ -1,11 +1,5 @@
 <?php
-ini_set('include_path', '/var/www/server3/interfaces');
-
-
-require_once 'IFooterDiv.php';
-require_once 'IHeaderDIv.php';
-require_once 'IRightPanelDiv.php';
-require_once 'IMainPlaceDiv.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.

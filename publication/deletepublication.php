@@ -1,9 +1,5 @@
 <?php
-/*
-require_once $_SERVER['DOCUMENT_ROOT'] . "/library/BaseView.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . "/library/LocationControler.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
-*/
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 $session = new SessionControler();
 
@@ -12,7 +8,7 @@ print_r($_REQUEST);
 print_r($_SERVER["REQUEST_METHOD"] );
 
 
-if ($session->is_Session() == false) {
+if (SessionControler::is_Session() == false) {
 
     $arr_arg = array("message" => "Ви не увыйшли, будьласка залогіньтесь",
         "address_redirect" => LocationControler::getLoginPage(), "text_redirect" => "Перейти на сторінку входу");
@@ -70,29 +66,24 @@ else
 
 ///////////////////////////////////////////////////////////////////////////////////////
 function checkAccess($id) {
+    
+    
     $queryDB = "select * from publications where id_public={$id} and id_user={$_SESSION["id"]}  limit 1 ";
-    $link = mysql_connect("localhost", "root", "1234");
-    mysql_select_db("my_first_site", $link);
-    $result = mysql_query($queryDB, $link);
-    $rows_count = mysql_num_rows($result);
+    $sql = new SqlManager();
+    $sql->selectQuery($queryDB);    
+    $rows_count = $sql->getNumRow();
 
-    if ($rows_count == 1 || SessionControler::isAdmin_current()) {
+    if ($rows_count == 1 || SessionControler::isAdmin()) {
         return true;
     }
     return false;
-
-    mysql_close($link);
 }
 
 function makeForm($id) {
     $queryDB = "select * from publications where id_public={$id}  limit 1 ";
-    $link = mysql_connect("localhost", "root", "1234");
-    mysql_select_db("my_first_site", $link);
-    $result = mysql_query($queryDB, $link);
-
-    $row = mysql_fetch_array($result);
-    mysql_close($link);
-
+    $sql = new SqlManager();
+    $sql->selectQuery($queryDB); 
+    $row = $sql->getRow(0);
     $arg_form = array("header_of_pub" => $row["header_of_pub"], "id_publication" => $row["id_public"], "action" => LocationControler::getDeletePublicationPage());
     $form_delete = new BaseView($arg_form, $_SERVER['DOCUMENT_ROOT'] . "/forms/deletepublicationview.html");
     $arr_arg = array("message" => $form_delete,
@@ -115,13 +106,11 @@ function makeRedirectView($message)
 
 function deletePublication($id)
 {
+    
+    
     $queryDB = "delete from publications where id_public={$id}  limit 1 ";
-    $link = mysql_connect("localhost", "root", "1234");
-    mysql_select_db("my_first_site", $link);
-    $result = mysql_query($queryDB, $link);
-    mysql_close($link);
-
-   
+    $sql = new SqlManager();
+    $sql->selectQuery($queryDB);
 }
 
 

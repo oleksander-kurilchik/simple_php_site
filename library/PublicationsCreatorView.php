@@ -1,24 +1,6 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/interfaces/IMainPlaceDiv.php';
-
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/BaseView.php';
-
-
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of PublicationsCreatorView
- *
- * @author profesor
- */
 class PublicationsCreatorView implements IMainPlaceDiv {
 
     private $arr_arg;
@@ -98,8 +80,7 @@ class PublicationCreator {
 
     public function createPublications($arr) {
         $this->arr_arg = $arr;
-        mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
+        
         $query = "insert into publications  (header_of_pub,body_of_pub,date_of_creation,"
                 . "date_of_last_edit,id_user)"
                 . "values(\"{$this->arr_arg["header_of_pub"]}\","
@@ -107,11 +88,9 @@ class PublicationCreator {
                 . " NOW()  ,"
                 . "NOW(),"
                 . "\"{$this->arr_arg["id_user"]}\" ) ";
-
-
-
-        $result = mysql_query($query);
-        return true;
+$sql = new SqlManager();
+        $sql->selectQuery($query);
+                return true;
     }
 
     //put your code here
@@ -121,13 +100,13 @@ class PublicationEditor extends PublicationCreator {
 
     public function createPublications($arr) {
         $this->arr_arg = $arr;
-        mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
+       
         $query = "update  publications  set header_of_pub =\"{$this->arr_arg["header_of_pub"]}\" ,"
                 . "  body_of_pub=\"{$this->arr_arg["body_of_pub"]}\"  ,  date_of_last_edit=NOW()"
                 . " where id_public ={$this->arr_arg["id_public"]}   ";
 
-        $result = mysql_query($query);
+        $sql = new SqlManager();
+        $sql->selectQuery($query);
         return true;
     }
 

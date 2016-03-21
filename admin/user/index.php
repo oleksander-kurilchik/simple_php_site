@@ -1,32 +1,11 @@
 <?php
 //admin panel
 
-
-require_once '/var/www/server3/library/LocationControler.php';
-require_once '/var/www/server3/library/SessionControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/admin/AdminRightPanel.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/admin/AdminCommentsListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/admin/AdminPublicationListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/admin/AdminRightPanel.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/admin/AdminUsersListView.php';
-
-
-
-
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/CommentListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/PublicationListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/CommentListViewExt.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserInfoRightPanel.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserInfoView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserProfileEditViewExt.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/reg_validador.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SqlManager.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 $session = new SessionControler();
 
-if (($session->is_Session() == true && $_SESSION["admission"] == "admin") == false) {
+if ((SessionControler::is_Session() == true && SessionControler::isAdmin()) == false) {
     header("Location: " . LocationControler::getLoginPage());
     return;
 }

@@ -1,24 +1,7 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/registration/SqlRegValidator.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SqlManager.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/BaseView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/BaseView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/registration/RegistrationValidator.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of registrationview
- *
- * @author profesor
- * E
- */
 class RegistrationView {
 
     private $page;
@@ -29,10 +12,7 @@ class RegistrationView {
     public function __construct($arr_arg= null) {
         $this->arr_arg = $arr_arg;
         $this->pattern = $_SERVER['DOCUMENT_ROOT'] . "/forms/registrationview.html";
-        print_r("--------------------<br><pre>");
-        print_r($this->arr_arg);
-        print_r("--------------------<br></pre>");
-        if($this->arr_arg!=null)
+       if($this->arr_arg!=null)
         {  
         $this->validate();        
         }
@@ -41,7 +21,7 @@ class RegistrationView {
         $this->page->deleteAllMarks();
     }
 
-    public function BuildForm() {
+    public function __toString() {
 
         return $this->page->__ToString();
     }
@@ -52,9 +32,9 @@ class RegistrationView {
             $heshp = sha1($this->arr_arg["password1"]);
             $query="insert into table_users (login,first_name,second_name,last_name,email,hesh_password,"
                     . "date_of_birth,date_of_registration ,address,sex)"
-                    . " values({$this->arr_arg["login"]},{$this->arr_arg["first_name"]},{$this->arr_arg["second_name"]},"
-                    . "{$this->arr_arg["last_name"]},{$this->arr_arg["email"]},{$heshp},{$this->arr_arg["date_of_birth"]},NOW(),"
-                    . "{$this->arr_arg["address"]},{$this->arr_arg["sex"]})";
+                    . " values('{$this->arr_arg["login"]}','{$this->arr_arg["first_name"]}','{$this->arr_arg["second_name"]}',"
+                    . "'{$this->arr_arg["last_name"]}','{$this->arr_arg["email"]}','{$heshp}','{$this->arr_arg["date_of_birth"]}',NOW(),"
+                    . "'{$this->arr_arg["address"]}','{$this->arr_arg["sex"]}')";
             
          $sql = new SqlManager();
          $sql->selectQuery($query);
@@ -73,21 +53,29 @@ class RegistrationView {
     }
 
     private function validate() {
+        
+                
         print_r($this->arr_arg);
         $flag = true;
-        if (RegistrationValidator::isValidLogin($this->arr_arg ["login"])) {
-            if (SqlRegValidator::isLoginExists($this->arr_arg ["login"])) {
+        if (RegistrationValidator::isValidLogin($this->arr_arg["login"])==true)
+            {
+            if (SqlRegValidator::isLoginExists($this->arr_arg["login"])) 
+                {
                 $this->arr_arg ["login_m"] = "Такий логін існує ";
                 $flag = false;
                 $this->arr_arg ["login"] = "";
             }
-        } else {
+           
+        } 
+         
+        else {
             $this->arr_arg ["login_m"] = "Логін має не коректний формат ";
             $flag = false;
             $this->arr_arg ["login"] = "";
         }
+        print_r($this->arr_arg);
         if (!RegistrationValidator::isValidFSLName($this->arr_arg ["first_name"])) {
-            $this->arr_arg ["first_name_m"] = "Імя має не коректний формат ";
+            $this->arr_arg ["first_name_m"] = "Імя має не коректний  формат ";
             $flag = false;
             $this->arr_arg ["first_name"] = "";
         }
@@ -119,10 +107,10 @@ class RegistrationView {
             $this->arr_arg[$this->arr_arg ["sex"]] = "selected";
         }
 
-        if (!RegistrationValidator::isValidDate($this->arr_arg ["date_of_bird"])) {
-            $this->arr_arg ["date_of_bird_m"] = "Дата народження має не коректний формат ";
+        if (!RegistrationValidator::isValidDate($this->arr_arg ["date_of_birth"])) {
+            $this->arr_arg ["date_of_birth_m"] = "Дата народження має не коректний формат ";
             $flag = false;
-            $this->arr_arg ["date_of_bird"] = "";
+            $this->arr_arg ["date_of_birth"] = "";
         }
         if (RegistrationValidator::isValidEmail($this->arr_arg ["email"])) 
         {
@@ -143,13 +131,6 @@ class RegistrationView {
             $flag = false;
             $this->arr_arg ["address"] = "";
         }
-
-
-
-
-
-        print_r("<br><pre>");
-        print_r($this->arr_arg);
         $this->is_valid = $flag;
     }
 

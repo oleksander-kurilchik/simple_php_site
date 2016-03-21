@@ -1,24 +1,12 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/profile/UserPublicationView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/profile/ProfileRightPanel.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/profile/UserProfileView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/profile/UserPublicationView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/profile/UserEditProfileView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserProfileEditView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/PublicationListView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserInfoViewLite.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/CommentListViewExt.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SqlManager.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/reg_validador.php';
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
 $session = new SessionControler();
 
-if ($session->is_Session() == false) {
+if (SessionControler::is_Session() == false) {
     header("Location: " . LocationControler::getLoginPage());
     return;
 }
@@ -111,13 +99,7 @@ function buildArrForPIEdit() {
     return $arr_arg;
 }
 
-function checkPassword() {
-    
-}
 
-function checkPersonalInfo() {
-    
-}
 
 function checkEmail($email, &$error_message) {
 

@@ -1,46 +1,19 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/interfaces/IMainPlaceDiv.php';
-
-
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/BaseView.php';
-
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of UserProfileEditView
- *
- * @author profesor
- */
 class UserProfileEditView implements IMainPlaceDiv {
     private $arr;
     private $page;
     protected $pattern;
-    
-
-
-
-
-
-
-
-
     public function  __construct($login,$arrmessage =null)
     {
         
-        $this->initPattern();       
+        $this->initPattern(); 
         
-             mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
-        $result = mysql_query("select *from  table_users
+        $sql = new SqlManager();
+        $sql->selectQuery("select *from  table_users
 where table_users.login = \"{$login}\" LIMIT 1; ");
- $row = mysql_fetch_array($result);
+         $row = $sql->getRow(0);
  $this->arr = $row;
  
  if(is_array($arrmessage))

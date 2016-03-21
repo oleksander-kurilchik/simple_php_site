@@ -1,14 +1,5 @@
 <?php
 
-/*
-require_once $_SERVER['DOCUMENT_ROOT'] .'/SqlPostCreatot.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/GlobalDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/UserRightPanel.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/PublicationsCreatorView.php';
- * *
- */
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 $session = new SessionControler();

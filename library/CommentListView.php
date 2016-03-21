@@ -1,6 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/CommentItemCreator.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/BaseView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
 class CommentListView {
@@ -21,43 +20,28 @@ if($query==null)
 from table_users,comments_of_pub
 where comments_of_pub.id_user=table_users.id_user  {$query}";
           
-       
-
-
-        
-      $link =  mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site",$link);
-         $result = mysql_query($queryDB,$link);
-        //$row=mysql_fetch_array($result);
-        
-        echo mysql_error($link);
         $commentcreator = new CommentItemCreator($typeofitem);
         
-         while ($row_c = mysql_fetch_array($result))
-         {
+       
+        $sql = new SqlManager();
+        $sql->selectQuery($queryDB);
+        $arr_row = $sql->getAllQueryArray();
+        
+        $is_current_admin = SessionControler::isAdmin();
+        $current_id = SessionControler::getCurrentId();
+             foreach ($arr_row as $row_c) {                
              $editeble=false;
              if(isset($_SESSION['id'])==true)
-             if($row_c["id_user"]==$_SESSION['id'] || $_SESSION['admission']=="admin")
+             if($row_c["id_user"]==$current_id|| $is_current_admin==true)
              { $editeble=true;}
 
               $commentitem = $commentcreator->CreateCommentItem($row_c, $editeble);
              
              $commentitemlist = $commentitemlist.$commentitem;
-                        
-                          
-                              
-
-           
+               
          }
          $this->page = new BaseView(array("commentslist"=>$commentitemlist),$this->pattern_comment_view);
          
-         
-        
-        
-      
-
-         mysql_close($link);
-        
     }
     public function __toString()
      {

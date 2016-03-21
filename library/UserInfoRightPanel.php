@@ -1,19 +1,7 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/interfaces/IRightPanelDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/library/LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of AdminRightPanel
- *
- * @author profesor
- */
 class UserInfoRightPanel implements IRightPanelDiv
 {
      private $pattern ;

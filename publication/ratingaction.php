@@ -1,9 +1,5 @@
 <?php
-/*
-require_once $_SERVER['DOCUMENT_ROOT']."/library/BaseView.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/library/LocationControler.php";
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/SessionControler.php';
-*/
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
@@ -39,11 +35,9 @@ $is_exsist_rating;
           $commentitemlist = '';
           $queryDB = "select * from rating_of_pub
 where rating_of_pub.id_user={$_SESSION["id"]}  and rating_of_pub.id_publication={$id_publication} limit 1";
-  
-      $link =  mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site",$link);
-         $result = mysql_query($queryDB,$link);
-      $is_exsist_rating =  mysql_num_rows($result);
+$sql = new SqlManager();
+$sql->selectQuery($queryDB);
+      $is_exsist_rating =$sql->getNumRow();
 
 
 
@@ -59,7 +53,7 @@ if($mode=="insert")
         {
         
        $queryDB = "insert into rating_of_pub (id_user,id_publication,rating) values($iduser,$id_publication,{$rating})"; 
-        mysql_query($queryDB,$link);
+        $sql->selectQuery($queryDB);
          $arr_arg=array("message"=>"Оцінка Додана",
         "address_redirect"=> $_SERVER["HTTP_REFERER"],"text_redirect"=>"Перейти на попередню сторінку"); 
    $page =  new BaseView($arr_arg,$_SERVER['DOCUMENT_ROOT']."/forms/informpage.html" );
@@ -79,7 +73,7 @@ elseif ($mode=="delete")
     {
     $queryDB = "delete from rating_of_pub where id_user={$iduser} and "
     . "id_publication={$id_publication}"; 
-        mysql_query($queryDB,$link);
+        $sql->selectQuery($queryDB);
     $arr_arg=array("message"=>"Оцінка Видалення ",
         "address_redirect"=> $_SERVER["HTTP_REFERER"],"text_redirect"=>"Перейти на попередню сторінку"); 
    $page =  new BaseView($arr_arg,$_SERVER['DOCUMENT_ROOT']."/forms/informpage.html" );

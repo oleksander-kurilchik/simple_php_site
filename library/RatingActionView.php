@@ -1,7 +1,6 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
-require_once $_SERVER['DOCUMENT_ROOT']."/library/BaseView.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/library/LocationControler.php";
 class RatingActionView
 {
 private $pattern;

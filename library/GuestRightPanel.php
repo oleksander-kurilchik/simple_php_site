@@ -1,9 +1,8 @@
 <?php
 
 
-require_once '/var/www/server3/interfaces/IRightPanelDiv.php';
-require_once '/var/www/server3/library/LocationControler.php';
-require_once '/var/www/server3/library/LoginFormPanelView.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

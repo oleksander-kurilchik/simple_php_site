@@ -1,21 +1,7 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/BaseView.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/interfaces/IMainPlaceDiv.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/PageNavigator.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/library/LocationControler.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of UserListView
- *
- * @author profesor
- */
 class UserListView implements IMainPlaceDiv{
 
     private $page;
@@ -31,26 +17,21 @@ class UserListView implements IMainPlaceDiv{
         $this->query = $query;
         $this->current_url = $current_url_pattern;
       $this->initPattern();
-
-
-        mysql_connect("localhost", "root", "1234");
-        mysql_select_db("my_first_site");
-
         $this->query = "select * from  table_users {$this->query} order by id_user    limit " . ((string) ($page - 1) * 5) . ", " . ((string) 5) . " ";
-
-       
-        
-        $result = mysql_query($this->query);
-        $useritemsresult = '';
-        while ($row = mysql_fetch_array($result)) {
+         $sql= new SqlManager();
+         $sql->selectQuery($this->query);
+         $arr_row = $sql->getAllQueryArray();
+         
+         $useritemsresult = '';
+         foreach ($arr_row as $row) 
+       {
             $row["useraddr"] = LocationControler::getUserPage()."?mode=userinfo&login={$row["login"]}";
             $useritem = new BaseView($row, $this->patternitem);
             $useritemsresult = $useritemsresult . $useritem;
          
         }
-        
-              $result = mysql_query("select  count(*)    from table_users");
-              $row = mysql_fetch_array($result);
+        $sql->selectQuery("select  count(*)    from table_users");             
+              $row = $sql->getRow(0);
               $this->count_page = ceil($row["count(*)"]/5);
         
         
