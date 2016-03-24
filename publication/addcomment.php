@@ -7,7 +7,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 $session = new SessionControler();
 if(SessionControler::is_Session() == false)
 {
-    echo 'Ви не увійшли , тому не можете оставляти коментарі';
+    $arr_arg = array("message" => "Ви не увыйшли, будьласка залогіньтесь",
+        "address_redirect" => LocationControler::getLoginPage(), "text_redirect" => "Перейти на сторінку входу");
+    $page = new InformPageView($arr_arg);
+    echo $page;
     return;
 }
 
@@ -22,17 +25,26 @@ $sql->selectQuery("select publications.id_public
 where publications.id_public ={$_POST["id_publication"]} LIMIT 1;" );
        if( $sql->getNumRow()==0)
        {
-            echo "Ошибочный запрос: публикации не существуэт";
-            return;
+          $arr_arg = array("message" => "Ви не можете додавати кометарі до публікації якої не існує ",
+        "address_redirect" => LocationControler::getLoginPage(), "text_redirect" => "Перейти на сторінку входу");
+    $page = new InformPageView($arr_arg);
+    echo $page;
+    return;
            
        }
        $text_comment = cutStrExt($_POST['text_comment']);
        
-             
+             $id_user = SessionControler::getCurrentId();
            $sql->selectQuery("insert into comments_of_pub (id_user,id_publications,datepub,body_of_comment)
-           values({$_SESSION['id']},{$_POST['id_publication']},NOW(),\"{$text_comment} \");");
-   echo "<br/> коментар доданий";
-   echo '<a href="'.$_SERVER['HTTP_REFERER'].'" > Перейти назад до публікації</a> ';
+           values({$id_user} ,{$_POST['id_publication']},NOW(),\"{$text_comment} \");");
+  
+   
+   
+    $arr_arg = array("message" => "Коментар доданий ",
+        "address_redirect" => $_SERVER['HTTP_REFERER'], "text_redirect" => "Перейти назад до публікації");
+    $page = new InformPageView($arr_arg);
+    echo $page;
+    return;
        
        
        

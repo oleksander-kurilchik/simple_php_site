@@ -6,14 +6,23 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 $session = new SessionControler();
 
 if ((SessionControler::is_Session() == true && SessionControler::isAdmin()) == false) {
-    header("Location: " . LocationControler::getLoginPage());
-    return;
+   
+    $arr_arg = array("message" => "Ви не можете тут знаходитися",
+        "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися  на головну  сторінку ");
+    $page = new InformPageView($arr_arg);
+    echo $page;
+    return ;
+    
 }
 
-print_r($_GET);
+
 if (isset($_GET["login"]) == false || isset($_GET["mode"]) == false) {
-    // header("Location: ".LocationControler::getAdminPage()."?mode=users"); 
-    //return;
+    
+    $arr_arg = array("message" => "Неправильно передані параметри",
+        "address_redirect" => LocationControler::getAdminPage(), "text_redirect" => "Повернутися  в адмінську панель");
+    $page = new InformPageView($arr_arg);
+    echo $page;
+    return ;
 }
 
 
@@ -28,9 +37,25 @@ if (!isset($_GET["page"])) {
     }
 }
 
-$login = $_GET["login"];
+$login=htmlspecialchars($_GET["login"], ENT_QUOTES);
 
 $login_query = "&login={$login}";
+$sqlcheck = new SqlManager();
+$sqlcheck->selectQuery("select * from table_users where login=\"{$login}\" limit 1");
+if($sqlcheck->getNumRow()!=1)
+{
+    $arr_arg = array("message" => "Даного користувача з логіном \"{$login}\" не існує",
+        "address_redirect" => LocationControler::getAdminPage(), "text_redirect" => "Повернутися  в адмінську панель");
+    $page = new InformPageView($arr_arg);
+    echo $page;
+    return ;
+    
+    
+}
+
+
+
+
 
 if ($_GET["mode"] == "userinfo") {
 

@@ -12,7 +12,7 @@ if (SessionControler::is_Session() == false) {
 
     $arr_arg = array("message" => "Ви не увыйшли, будьласка залогіньтесь",
         "address_redirect" => LocationControler::getLoginPage(), "text_redirect" => "Перейти на сторінку входу");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    $page = new InformPageView($arr_arg);
     echo $page;
     return;
 }
@@ -88,7 +88,7 @@ function makeForm($id) {
     $form_delete = new BaseView($arg_form, $_SERVER['DOCUMENT_ROOT'] . "/forms/deletepublicationview.html");
     $arr_arg = array("message" => $form_delete,
         "address_redirect" => $_SERVER["HTTP_REFERER"], "text_redirect" => "Перейти на попередню сторінку");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    $page = new InformPageView($arr_arg);
     
     
     return $page;
@@ -99,7 +99,7 @@ function makeRedirectView($message)
 {
     $arr_arg = array("message" => $message,
             "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну сторінку");
-        $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+        $page = new InformPageView($arr_arg);
         return $page;
        
 }

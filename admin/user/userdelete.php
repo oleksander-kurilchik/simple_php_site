@@ -14,7 +14,7 @@ if(($session->is_Session() ==true&&$_SESSION["admission"]=="admin")==false)
     $arr_arg = array("message" => "У вас немає прав тут знаходитися",
         "address_redirect" => LocationControler::getMainPage(),
         "text_redirect" => "Перейти на головну сторінку");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT']."/forms/informpage.html");
+    $page = new InformPageView($arr_arg);
     echo $page;
     return;
 }
@@ -58,7 +58,7 @@ function generateBasePage($message)
 {
     $arr_arg = array("message" => $message,
         "address_redirect" => LocationControler::getAdminPage()."?section=userlisl", "text_redirect" => "Повернутися в адмінську панель");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    $page = new InformPageView($arr_arg);
     return $page; 
 }
 /*

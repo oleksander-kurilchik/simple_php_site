@@ -14,7 +14,7 @@
 class LocationControler {
     public static function getMainPage()
     {
-        return "http://server3";
+        return "http://".$_SERVER['HTTP_HOST'];
     }
      public static function getRegistrationPage()
     {

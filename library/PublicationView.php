@@ -26,6 +26,15 @@ where publications.id_user =table_users.id_user and publications.id_public ={$id
         $sql = new SqlManager();
         $sql->selectQuery($stringQuery);
         $row = $sql->getRow(0);
+        $row["body_of_pub"] =  preg_replace('|\[br\]|im', "<br>",   $row["body_of_pub"]);  
+        $row["body_of_pub"] =  preg_replace('|\[br\]|im', "<br>",   $row["body_of_pub"]);
+        $row["body_of_pub"] = preg_replace('|\[b\](.*)\[/b\]|isU', '<b> $1</b>', $row["body_of_pub"]);
+        $row["body_of_pub"] = preg_replace('|\[p\](.*)\[/p\]|isU', '<p> $1</p>', $row["body_of_pub"]);
+        $row["body_of_pub"] = preg_replace('|\[i\](.*)\[/i\]|isU', '<i> $1</i>', $row["body_of_pub"]);
+        
+
+        
+        
         
         
         

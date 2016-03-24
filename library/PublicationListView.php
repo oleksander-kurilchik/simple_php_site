@@ -22,7 +22,10 @@ class PublicationListView implements IMainPlaceDiv {
            foreach ($arr_list as $key => $value )
            {   
                
-               $value["pub_addres"] = LocationControler::getPublicationPage()."?publication=".$value["id_public"];
+              
+              $value["body_of_pub"]=  $rest = mb_substr( $value["body_of_pub"], 0, 305)  ;;//cutStrExt($value["body_of_pub"]);
+              $value["body_of_pub"].=".....";
+              $value["pub_addres"] = LocationControler::getPublicationPage()."?publication=".$value["id_public"];
                
                $item = new BaseView($value,$_SERVER['DOCUMENT_ROOT'] ."/forms/publicationitem.html");
                   
@@ -89,6 +92,10 @@ class PublicationListView implements IMainPlaceDiv {
         
     }
 
-//put your code here
+
+
+    
+    
+    
 }
 ?>

@@ -7,8 +7,11 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 $session = new SessionControler();
 
 if (SessionControler::is_Session() == false) {
-    header("Location: " . LocationControler::getLoginPage());
-    return;
+   $arr_arg = array("message" => "Ви не можете тут знаходитися",
+            "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну сторінку");
+        $page = new InformPageView($arr_arg);
+        echo $page;
+        return;
 }
 
 if ((isset($_GET["mode"])) == false) {
@@ -35,7 +38,7 @@ if (!isset($_GET["page"])) {
 
 if ($_GET["mode"] == "viewprofile") {
     $arg = array("listpub" => LocationControler::getProfillePage() . "?mode=publications", "listcomm" => LocationControler::getProfillePage() . "?mode=comments");
-    $mainplace = new UserInfoViewLite($_SESSION['login'], $arg);
+    $mainplace = new UserInfoViewLite(SessionControler::getCurrentLogin(), $arg);
     $rightp_select = 1;
 } elseif ($_GET["mode"] == "publications") {
 
@@ -65,14 +68,9 @@ if ($_GET["mode"] == "viewprofile") {
             
         }
 
-        print_r("<pre>");
-        print_r($_SERVER["REQUEST_METHOD"]);
-        print_r("<br>");
-        print_r($_POST);
-        print_r("</pre>");
     }
     $rightp_select = 4;
-    $mainplace = new UserProfileEditView($_SESSION["login"], $arr_arg);
+    $mainplace = new UserProfileEditView(SessionControler::getCurrentLogin(), $arr_arg);
 } elseif ($_GET["mode"] == "comments") {
     $rightp_select = 3;
     $mainplace = new CommentListViewExt($page, 1, LocationControler::getProfillePage() . "?mode=comments&<\$page_number>", " and table_users.login=\"{$_SESSION["login"]}\" ");
@@ -168,13 +166,7 @@ function changePassword($array, $id_user,&$arr_mess)
          $arr_mess["new_password_m"]="Пароль успішно змінено";
     }
        
-   
-    
 }
-
-
-
-
 
 function chagePersonalInfo($arr, $id_user, &$arr_mess) {
     $flag = true;
@@ -245,9 +237,6 @@ function chagePersonalInfo($arr, $id_user, &$arr_mess) {
     }
 }
 
-function isExistAllPersonalInfo($arr, &$message) {
-    //$arr_name = array("first_name","","");    потім розобраться
-}
 ?>
 
 

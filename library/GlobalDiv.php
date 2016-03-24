@@ -18,14 +18,22 @@ class GlobalDiv {
   private $mainplace;
   private $footer;
   private $pattern;
-    public function __construct(/*IHeaderDIv $head,*/  IRightPanelDiv $rightp ,
-                                    IMainPlaceDiv $main =NULL/*,  IFooterDiv */)
+    public function __construct(  IRightPanelDiv $rightp ,
+                                    IMainPlaceDiv $main, IHeaderDIv $head=null, IFooterDiv $foot = null)
     {
-        //$this->header = $head; 
+        
+       if($head ==null)
+       {
+           $head = new HeaderPageView();
+       }
+        if($foot ==null)
+       {
+           $foot = new FotterPageView();
+       }
+       $this->header = $head; 
         $this->rightpanel = $rightp; 
        $this->mainplace = $main;
-       // $this->footer = $foot; 
-       
+       $this->footer = $foot; 
        
       $this->pattern= $_SERVER['DOCUMENT_ROOT'].'/forms/basepage.html';
                
@@ -33,13 +41,12 @@ class GlobalDiv {
     public function buildForm() 
     {
          $page =  file_get_contents($this->pattern);
-        // $page =  preg_replace('|{\{$header}}|im', $this->header->buildForm(),  $page);
+        $page =  preg_replace('|{\$header}|im', $this->header->buildForm(),  $page);
          $page =  preg_replace('|{\$rightpanel}|im', $this->rightpanel->buildForm(),  $page);
-       if  ( $this->mainplace != null)
-        {
+       
          $page =  preg_replace('|{\$mainplace}|im', $this->mainplace->buildForm(),  $page);
-        }
-        // $page =  preg_replace('|{\{$footer}}|im', $this->footer->buildForm(),  $page);
+        
+         $page =  preg_replace('|{\$footer}|im', $this->footer->buildForm(),  $page);
          
           return $page;
         

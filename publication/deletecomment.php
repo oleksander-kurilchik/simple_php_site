@@ -10,7 +10,7 @@ print_r($_POST);
 if (SessionControler::is_Session() == false) {
        $arr_arg = array("message" => "Ви не залоіынилися",
             "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну сторінку");
-        $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+        $page = new InformPageView($arr_arg);
         echo $page;
         return;
 }
@@ -32,7 +32,7 @@ if(isset($_POST["id_comment"]))
         
          $arr_arg = array("message" => "Комментар видаленно ",
             "address_redirect" =>  $_SERVER["HTTP_REFERER"], "text_redirect" => "Перейти на попередню сторінку  сторінку");
-        $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+        $page = new InformPageView($arr_arg);
         echo $page;
         return;
         
@@ -43,7 +43,7 @@ if(isset($_POST["id_comment"]))
     }
     $arr_arg = array("message" => "Помилка  ",
             "address_redirect" =>  $_SERVER["HTTP_REFERER"], "text_redirect" => "Перейти на попередню сторінку  сторінку");
-        $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+        $page = new InformPageView($arr_arg);
         echo $page;
         return;
     

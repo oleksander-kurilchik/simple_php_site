@@ -7,7 +7,7 @@ if (SessionControler::is_Session() == false) {
     
     $arr_arg = array("message" => "Ви не залогінилися",
         "address_redirect" => LocationControler::getLoginPage(), "text_redirect" => "Повернутися  на   сторінку входу ");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    $page = new InformPageView($arr_arg);
     echo $page;
     return ;
 }
@@ -31,7 +31,7 @@ elseif($_SERVER["REQUEST_METHOD"]=="POST")
         $pub_creat_view->createPublication(new PublicationCreator());
          $arr_arg = array("message" => "Ви створили публікацію",
         "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися  на головну  сторінку ");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    $page = new v($arr_arg);
     echo $page;
     return ;
        

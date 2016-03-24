@@ -2,13 +2,11 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 session_start();
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 unset($_SESSION);
 session_destroy();
- header("Location: ".LocationControler::getMainPage());
-    return;
+  $arr_arg = array("message" => "Ви вийшли",
+            "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну сторінку");
+        $page = new InformPageView($arr_arg);
+        echo $page;
+        return;
 ?>

@@ -21,7 +21,7 @@ if($_GET["publication"]==NULL||(preg_match('|^[0-9]+$|', $_GET["publication"])==
   
    $arr_arg = array("message" => "Помилковий запит: не вказаний publication",
         "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися в на головну сторінку");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    $page = new InformPageView($arr_arg);
     echo $page;
     return ; 
 }
@@ -32,7 +32,7 @@ if($sql->getNumRow()==0)
 {
      $arr_arg = array("message" => "Дана Публікація не існує",
         "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Повернутися в на головну сторінку");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    $page = new InformPageView($arr_arg);
     echo $page;
     return ;
     

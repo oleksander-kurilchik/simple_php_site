@@ -10,7 +10,7 @@ if ($session->is_Session() == false) {
     
     $arr_arg=array("message"=>"Ви не увыйшли, будьласка залогіньтесь",
         "address_redirect"=>  LocationControler::getLoginPage(),"text_redirect"=>"Перейти на сторінку входу"); 
-   $page =  new BaseView($arr_arg,$_SERVER['DOCUMENT_ROOT']."/forms/informpage.html" );
+   $page =  new InformPageView($arr_arg);
    echo $page;
     return;
 }
@@ -22,7 +22,7 @@ if(isset( $_POST["mode"])==false||isset( $_POST["id_publication"])==false)
 {
      $arr_arg=array("message"=>"Неправильно передані параметри",
         "address_redirect"=>  LocationControler::getMainPage(),"text_redirect"=>"Перейти на головну сторінку"); 
-   $page =  new BaseView($arr_arg,$_SERVER['DOCUMENT_ROOT']."/forms/informpage.html" );
+   $page =  new InformPageView($arr_arg );
      echo $page;
     return;
       
@@ -56,7 +56,7 @@ if($mode=="insert")
         $sql->selectQuery($queryDB);
          $arr_arg=array("message"=>"Оцінка Додана",
         "address_redirect"=> $_SERVER["HTTP_REFERER"],"text_redirect"=>"Перейти на попередню сторінку"); 
-   $page =  new BaseView($arr_arg,$_SERVER['DOCUMENT_ROOT']."/forms/informpage.html" );
+   $page =  new InformPageView($arr_arg );
      echo $page;
      return;
         
@@ -76,7 +76,7 @@ elseif ($mode=="delete")
         $sql->selectQuery($queryDB);
     $arr_arg=array("message"=>"Оцінка Видалення ",
         "address_redirect"=> $_SERVER["HTTP_REFERER"],"text_redirect"=>"Перейти на попередню сторінку"); 
-   $page =  new BaseView($arr_arg,$_SERVER['DOCUMENT_ROOT']."/forms/informpage.html" );
+   $page =  new InformPageView($arr_arg );
      echo $page;
      return;
     }
@@ -85,7 +85,7 @@ elseif ($mode=="delete")
 }
 $arr_arg=array("message"=>"Неправильно передані параметри",
         "address_redirect"=>  LocationControler::getMainPage(),"text_redirect"=>"Перейти на головну сторінку"); 
-   $page =  new BaseView($arr_arg,$_SERVER['DOCUMENT_ROOT']."/forms/informpage.html" );
+   $page =  new InformPageView($arr_arg );
      echo $page;
     return;
 

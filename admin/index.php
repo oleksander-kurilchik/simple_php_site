@@ -10,7 +10,7 @@ if((SessionControler::is_Session() ==true&&SessionControler::isAdmin())==false)
 {
      $arr_arg = array("message" => "Ви не маєте права тут знаходитися",
         "address_redirect" => LocationControler::getMainPage(), "text_redirect" => "Перейти на головну");
-    $page = new BaseView($arr_arg, $_SERVER['DOCUMENT_ROOT'] . "/forms/informpage.html");
+    $page = new InformPageView($arr_arg);
     echo $page;
     return;
      
