@@ -92,7 +92,7 @@ if (preg_match('|^\s*([[:alnum:]]{3,40})\s*$|', $name, $matches) == true) {
 
         $date = preg_replace('|[\s]{2,}|', '', $date);
 
-        if (preg_match('#^\s*([0123]?[\d][.][012]?[\d][.](19|20)[\d]{2})\s*$#', $date, $matches) == true) {
+        if (preg_match('#^\s*((19|20)[\d]{2}[-][012]?[\d][-][0123]?[\d])\s*$#', $date, $matches) == true) {
             $date = $matches[1];
             return true;
         }
