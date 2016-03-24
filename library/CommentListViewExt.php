@@ -35,7 +35,7 @@ class CommentListViewExt implements IMainPlaceDiv {
         $queryDB ="select  count(*)    from comments_of_pub,table_users"
                 . " where comments_of_pub.id_user=table_users.id_user ".$this->query."   ";
         
-       // print_r($queryDB);
+       
         
         $sql = new SqlManager();
         $sql->selectQuery($queryDB);

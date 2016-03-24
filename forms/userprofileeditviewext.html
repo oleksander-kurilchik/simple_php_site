@@ -3,36 +3,37 @@
     <table width="80%">
         <tbody>
 
-            <tr><td colspan="3">Edit Personal info of user "<$login>" </td></tr>
-            <tr><td  width="50%">Current first name <$first_name>  </td></tr>
-            <tr><td>Edit first name </td><td><input type="text" name="first_name" placeholder="Enter first name"> </td><td><$first_name_m> </td>   </tr>
-            <tr><td >Current seconf name <$second_name>  </td></tr>
-            <tr><td>Edit second name </td><td><input type="text" name="second_name" placeholder="Enter second name"> </td><td><$second_name_m> </td>   </tr>
-            <tr><td >Current last name <$last_name>  </td></tr>
-            <tr><td>Edit last name </td><td><input type="text" name="last_name" placeholder="Enter last name"> </td><td><$last_name_m> </td>   </tr>
+            <tr><td colspan="3">Редагувати персональну інформації <br>про користувача "<$login>" </td></tr>
+            <tr><td  width="50%">Імя <$first_name>  </td></tr>
+            <tr><td>Редагувати Імя </td><td><input type="text" name="first_name" placeholder="Enter first name"> </td><td><$first_name_m> </td>   </tr>
+            <tr><td >Призвище  <$second_name>  </td></tr>
+            <tr><td>Редагувати призвище </td><td><input type="text" name="second_name" placeholder="Enter second name"> </td><td><$second_name_m> </td>   </tr>
+            <tr><td >По батькові <$last_name>  </td></tr>
+            <tr><td>Редагувати по батькові </td><td><input type="text" name="last_name" placeholder="Enter last name"> </td><td><$last_name_m> </td>   </tr>
 
 
-            <tr><td >Current address <$address>  </td></tr>
-            <tr><td>Edit address </td><td><input type="text" name="address" placeholder="Enter Address"> </td><td><$address_m> </td>   </tr>
+            <tr><td >Адреса <$address>  </td></tr>
+            <tr><td>Редагувати адресу  </td><td><input type="text" name="address" placeholder="Enter Address"> </td><td><$address_m> </td>   </tr>
 
-            <tr><td >Current date of birth <$date_of_birth>  </td></tr>
-            <tr><td>Edit name date of birth  </td><td><input type="date" name="date_of_birth" > </td><td><$date_of_birth_m> </td>   </tr>
+            <tr><td >Дата народження  <$date_of_birth>  </td></tr>
+            <tr><td>Редагувати дату народження   </td><td><input type="date" name="date_of_birth" > </td><td><$date_of_birth_m> </td>   </tr>
 
 
-            <tr><td >Current sex <$sex>  </td></tr>
-            <tr><td>Edit sex  </td><td>
+            <tr><td >Стать <$sex>  </td></tr>
+            <tr><td>Редагувати стать  </td><td>
                     <select name="sex"   >
-                                <option disabled>Edit sex</option>
-                        <option value="no_edit" selected>No Edit Sex</option>
-                        <option value="male">Male</option >
-                        <option value="female"> Female</option>
+                             
+                        <option value="no_edit" selected>Не редагувати</option>
+                        <option value="male">Чоловіча</option >
+                        <option value="female"> Жіноча</option>
                     </select>
                 </td><td><$sex_m> </td>   </tr>
             
             
 
-            <tr><td> Reset  </td><td><input  type="reset" value="Reset Personal Info"> </td><td></td>   </tr>
-            <tr><td>Save changing  </td><td><input  type="submit" name ="save_personal_info" value="Save Personal Info"> </td><td></td>   </tr>
+            <tr><td> Зкиути введені дані  </td><td><input  type="reset" value="Скинути"> </td><td></td>   </tr>
+            <tr><td>Зберігти зміни  </td><td><input  type="submit" name ="save_personal_info" 
+                                                     value="Зберігти персональні дані"> </td><td></td>   </tr>
            
         </tbody>
 
@@ -47,10 +48,10 @@
     <table width="80%">
         <tbody>
 
-            <tr><td colspan="3">Edit Email </td></tr>
-            <tr><td  width="50%">Current first email <$email>  </td></tr>
-            <tr><td>Edit email</td><td><input type="email" name="email" placeholder="Enter email"> </td><td><$email_m> </td>   </tr>
-            <tr><td>Save email  </td><td><input  type="submit" name="save_email" value="Save email"> </td><td></td>   </tr> 
+            <tr><td colspan="3">Редагувати електрону скриньку </td></tr>
+            <tr><td  width="50%">Електрона скринька <$email>  </td></tr>
+            <tr><td>Редагувати електрону скриньку</td><td><input type="email" name="email" placeholder="Enter email"> </td><td><$email_m> </td>   </tr>
+            <tr><td>Зберігти  </td><td><input  type="submit" name="save_email" value="Save email"> </td><td></td>   </tr> 
 
         </tbody>
     </table>
@@ -63,16 +64,16 @@
 
             <table width="80%">
         <tbody>
-           <tr ><td  colspan="3" > Current admission <$admission>  </td></tr>
-           <tr><td width="50%">Edit admission  </td><td>
+           <tr ><td  colspan="3" > Теперішній рівень прав <$admission>  </td></tr>
+           <tr><td width="50%">Редагувати права   </td><td>
                     <select name="admission"   >
-                        <option disabled>Edit admission</option>
-                        <option value="no_edit" selected>No Edit admission</option>
-                        <option value="user">User</option >
-                        <option value="admin">Admin</option>
+                        
+                        <option value="no_edit" selected>Не редагувати</option>
+                        <option value="user">Користувач</option >
+                        <option value="admin">Адміністратор</option>
                     </select>
                 </td><td><$admission_m> </td>   </tr>
-           <tr><td>Save admission  </td><td><input  type="submit" name="save_admission" value="Save admission"> </td><td></td>   </tr>
+           <tr><td>Зберігти права </td><td><input  type="submit" name="save_admission" value="Зберігти"> </td><td></td>   </tr>
            
         </tbody>
 
@@ -93,12 +94,12 @@
     <table width="80%">
         <tbody>
 
-            <tr><td colspan="3">Change Password</td></tr>
+            <tr><td colspan="3">Змінити</td></tr>
             
            
-            <tr><td width="50%">Enter new password </td><td><input type="password" name="new_password" placeholder="Enter new password"> </td><td><$new_password_m> </td>   </tr>
-            <tr><td>Repead new password </td><td><input type="password" name="rnew_password" placeholder="Repead new password"> </td><td><$rnew_password_m> </td>   </tr>
-            <tr><td>Save new password  </td><td><input  type="submit" name ="save_password" value="Save"> </td><td></td>   </tr>
+            <tr><td width="50%">Введіть новий пароль </td><td><input type="password" name="new_password" placeholder="Enter new password"> </td><td><$new_password_m> </td>   </tr>
+            <tr><td>Повторіть новий пароль </td><td><input type="password" name="rnew_password" placeholder="Repead new password"> </td><td><$rnew_password_m> </td>   </tr>
+            <tr><td>Зберегти новий пароль  </td><td><input  type="submit" name ="save_password" value="Зберігти"> </td><td></td>   </tr>
            
         </tbody>
 

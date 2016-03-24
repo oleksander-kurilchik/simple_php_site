@@ -52,15 +52,11 @@ where publications.id_public ={$_POST["id_publication"]} LIMIT 1;" );
 
 
 
-
-//print_r($_POST)."<br>";
-
-//print_r($_SERVER['HTTP_REFERER']);
-   
    
    
 function cutStrExt($param) 
 {
+    mb_internal_encoding("UTF-8");
     if(mb_strlen($param)<147)
         return $param;
     $pos=  mb_strpos($param," ",147);

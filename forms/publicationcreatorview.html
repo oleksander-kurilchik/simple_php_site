@@ -17,14 +17,15 @@
             }
             
             </script>
+            <center>
             <form action = "<$action>" method="POST">
-                <label> Header<input type="text" name="header_of_pub" placeholder="enter header" value = "<$header_of_pub>"/></label><$header_of_pub_m> <br/>
-                <label> Text <br><textarea id="body_of_pub" onkeyup="encodeEntities()"  name="body_of_pub" placeholder="enter text" style="width: 500px; height:300px "  ><$body_of_pub></textarea> </label><$body_of_pub_m> <br/>
+                <label> <h3>Назва публікації</h3><br><input type="text" name="header_of_pub" placeholder="enter header" value = "<$header_of_pub>" size="90" style="height: 40px"/></label><$header_of_pub_m> <br/>
+                <label> <h3>Текст Публікації</h3> <br><textarea id="body_of_pub" onkeyup="encodeEntities()"  name="body_of_pub" placeholder="enter text" style="width: 700px; height:400px; resize: vertical "  ><$body_of_pub></textarea> </label><$body_of_pub_m> <br/>
                 <input type="hidden" name="id_public" value="<$id_public>">
-                <input type="submit" value="next">
+                <input type="submit" value="Зберігти публікацію">
 
 
-            </form>
+            </form></center>
             
            
         </div>

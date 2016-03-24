@@ -55,7 +55,7 @@ class RegistrationView {
     private function validate() {
         
                 
-        print_r($this->arr_arg);
+        
         $flag = true;
         if (RegistrationValidator::isValidLogin($this->arr_arg["login"])==true)
             {
@@ -73,7 +73,7 @@ class RegistrationView {
             $flag = false;
             $this->arr_arg ["login"] = "";
         }
-        print_r($this->arr_arg);
+       ;
         if (!RegistrationValidator::isValidFSLName($this->arr_arg ["first_name"])) {
             $this->arr_arg ["first_name_m"] = "Імя має не коректний  формат ";
             $flag = false;

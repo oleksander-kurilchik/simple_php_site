@@ -9,7 +9,22 @@
         <style>
 
             
-            
+            .div_comment
+            {
+                width: 900px;
+                word-wrap: break-word;
+                padding-left: 10px;
+                margin: 7px;
+                
+            }
+            .div_publication_item
+            {
+                width: 900px;
+                word-wrap: break-word;
+                padding-left: 10px;
+                margin: 7px;
+                
+            }
             
             #footer{border-style: solid;}
 
@@ -20,6 +35,7 @@
              min-height: 600px;
              display: block;
              padding: 1px;
+             word-wrap: break-word;
             
 
 
@@ -78,11 +94,26 @@
            // element1.style.width = 75%; 
             //element1.style.width = 25%; 
             }
+            
+            function onLoadSetSize()
+            {
+               width=document.body.clientWidth; // ширина  
+    height=document.body.clientHeight; // высота  
+    
+    var element = document.getElementById('table1');
+    element.style.width = (width-10)+"px";
+    
+     
+     
+     
+     
+         
+            };
             </script>
 
     </head>
-<body>     
-    <table  id="table1" cellspacing="0" border="1" width="100%">
+    <body onload="onLoadSetSize()">     
+        <table  id="table1" cellspacing="0" border="1" width="100%" style="resize: none">
             <tbody>
                 <tr><td colspan="2">
         <div id="header" >

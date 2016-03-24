@@ -4,9 +4,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 $session = new SessionControler();
 
 
-print_r($_REQUEST);
-print_r($_SERVER["REQUEST_METHOD"] );
-
 
 if (SessionControler::is_Session() == false) {
 

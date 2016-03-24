@@ -1,32 +1,29 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<div class="publication" style="border: none">
-    ----------------------------------
+
+<div class="publication" id="publication" style="border: none; margin: 10px">
     <br/>
-    
-    Publication id <$id_public><br/>
-     Header <$header_of_pub>  <br/>
-    Body: <> <$body_of_pub><br/>
-    date of publication <$date_of_creation><br/>
-     date of last edit <$date_of_last_edit><br/>
-     
-    User   <$login><br/>
-    
-    
+    Публікація id <$id_public><br/>
+    <h2> <$header_of_pub></h2>  <br/>
+    <$body_of_pub><br/>
+    <br/> <br/> 
+    <i>Дата публікаціїi  <b><$date_of_creation></b></i><br/>
+    <i> Дата останього редагування <b><$date_of_last_edit></b></i><br/>     
+     <i>Опублікував <b><$login></b></i>
    
-    
-    
-    
-    ----------------------------------
     <br/>
-    <$editable>;
+    <$editable>
 </div>
-<div><$rating_action> </div>
-<div><$rating_result> </div>
+<div> 
+    <table>
+        <tbody>
+            <tr>
+                <td>           
+                    <$rating_result></td><td>  <$rating_action></td>
+    
+            </tr>
+    </tbody>
+    </table>
+</div>
+<div> </div>
 <div><$commentsform> </div>
 
 <div class="comments" style="border: " >

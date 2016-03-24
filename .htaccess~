@@ -1,0 +1,5 @@
+Options -Indexes
+ErrorDocument 404 http://server3/error/index.html
+ErrorDocument 403 /error/index.htm
+ErrorDocument 400 /error/index.htm
+ErrorDocument 500 /error/index.htm

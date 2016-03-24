@@ -7,7 +7,7 @@ class SqlManager {
     private $result;
 
     public function __construct() {
-        $this->db = new mysqli('127.0.0.1', 'root', '1234', 'my_first_site');
+        $this->db = new mysqli('127.0.0.1', 'root', '1234', 'othedb');
         if ($this->db->connect_error) {
             echo '<h1>Помилка зєднання з базою даних<h1>';
             die();

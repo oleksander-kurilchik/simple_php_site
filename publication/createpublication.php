@@ -16,13 +16,11 @@ if (SessionControler::is_Session() == false) {
 if($_SERVER["REQUEST_METHOD"]=="GET")
 {
    $pub_creat_view = new PublicationsCreatorView(array());
-   print_r($_SERVER["REQUEST_METHOD"]);
   
     
 }
 elseif($_SERVER["REQUEST_METHOD"]=="POST")
 {
-    print_r($_SERVER["REQUEST_METHOD"]);
     $_POST["id_user"]=  SessionControler::getCurrentId();
     $pub_creat_view = new PublicationsCreatorView($_POST);
     

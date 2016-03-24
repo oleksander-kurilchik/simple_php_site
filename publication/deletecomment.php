@@ -4,8 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/library/autoload.php';
 
 
 $session = new SessionControler();
-echo "<pre>";
-print_r($_POST);
+
 
 if (SessionControler::is_Session() == false) {
        $arr_arg = array("message" => "Ви не залоіынилися",

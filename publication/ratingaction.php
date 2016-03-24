@@ -16,7 +16,7 @@ if ($session->is_Session() == false) {
 }
 
 
-print_r($_POST);
+
 
 if(isset( $_POST["mode"])==false||isset( $_POST["id_publication"])==false)
 {

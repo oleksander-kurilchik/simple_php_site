@@ -31,6 +31,13 @@ where publications.id_user =table_users.id_user and publications.id_public ={$id
         $row["body_of_pub"] = preg_replace('|\[b\](.*)\[/b\]|isU', '<b> $1</b>', $row["body_of_pub"]);
         $row["body_of_pub"] = preg_replace('|\[p\](.*)\[/p\]|isU', '<p> $1</p>', $row["body_of_pub"]);
         $row["body_of_pub"] = preg_replace('|\[i\](.*)\[/i\]|isU', '<i> $1</i>', $row["body_of_pub"]);
+        $row["body_of_pub"] = preg_replace('|\[u\](.*)\[/u\]|isU', '<u> $1</u>', $row["body_of_pub"]);
+        
+        $row["body_of_pub"] = preg_replace('|\[STRONG\](.*)\[/STRONG\]|isU', '<STRONG> $1</STRONG>', $row["body_of_pub"]);
+        $row["body_of_pub"] = preg_replace('|\[hr\](.*)\[/hr\]|isU', '<hr> $1</hr>', $row["body_of_pub"]);
+        //$row["body_of_pub"] = preg_replace('|\[pre\](.*)\[/pre\]|isU', '<pre> $1</pre>', $row["body_of_pub"]);
+        $row["body_of_pub"] = preg_replace('|\[u\](.*)\[/u\]|isU', '<i> $1</i>', $row["body_of_pub"]);
+        $row["body_of_pub"] = preg_replace('|\[u\](.*)\[/u\]|isU', '<i> $1</i>', $row["body_of_pub"]);
         
 
         

@@ -193,7 +193,7 @@ function chagePersonalInfo($arr, $id_user, &$arr_mess) {
         }
         
         $arr_mess = $array_return+$arr_mess;
-        print_r($arr_mess);
+      
         return false;
     }
 }
