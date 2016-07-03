@@ -16,6 +16,10 @@ class LocationControler {
     {
         return "http://".$_SERVER['HTTP_HOST'];
     }
+     public static function getMainIndexPage()
+    {
+        return "http://".$_SERVER['HTTP_HOST']."/index.php";
+    }
      public static function getRegistrationPage()
     {
          return self::getMainPage()."/registration.php/";

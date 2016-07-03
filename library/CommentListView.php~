@@ -27,13 +27,11 @@ where comments_of_pub.id_user=table_users.id_user  {$query}";
         $sql->selectQuery($queryDB);
         $arr_row = $sql->getAllQueryArray();
         
-        
+        $is_current_admin = SessionControler::isAdmin();
+        $current_id = SessionControler::getCurrentId();
              foreach ($arr_row as $row_c) {                
              $editeble=false;
              if(isset($_SESSION['id'])==true)
-{		
-		$is_current_admin = SessionControler::isAdmin();
-        $current_id = SessionControler::getCurrentId();
              if($row_c["id_user"]==$current_id|| $is_current_admin==true)
              { $editeble=true;}
 
@@ -42,7 +40,6 @@ where comments_of_pub.id_user=table_users.id_user  {$query}";
              $commentitemlist = $commentitemlist.$commentitem;
                
          }
-}
          $this->page = new BaseView(array("commentslist"=>$commentitemlist),$this->pattern_comment_view);
          
     }

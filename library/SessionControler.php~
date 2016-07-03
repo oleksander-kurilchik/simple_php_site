@@ -34,13 +34,11 @@ static public  function getCurrentId()
 static public function isAdmin()
 {
 if(isset($_SESSION['login']))
-{
     $sql = new SqlManager();
     $sql->selectQuery("select admission from table_users where login=\"{$_SESSION['login']}\"");
     $row = $sql->getRow(0); 
     if($row['admission']==="admin")
         return true;
-}
     return false;
 }
 
